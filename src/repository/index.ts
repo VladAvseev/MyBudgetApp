@@ -138,6 +138,29 @@ export const Repository = {
 		await this.setReports(updatedReports);
 	},
 
+	async editDailySpending(params: { reportId: number, data: TDailySpending }): Promise<void> {
+		const reports = await this.getReports();
+		const currentReport = findReport(reports, params.reportId);
+		
+		currentReport.dailySpending = currentReport.dailySpending.map((item) => {
+			if (item.id === params.data.id) {
+				return params.data;
+			} else {
+				return item;
+			}
+		});
+
+		const updatedReports = reports.map((report) => {
+			if (report.id === params.reportId) {
+				return currentReport;
+			} else {
+				return report
+			}
+		});
+
+		await this.setReports(updatedReports);	
+	},
+
 	async addOtherSpending(data: { id: number, value: number, title: string }): Promise<void> {
 		const reports = await this.getReports();
 		const currentReport = findReport(reports, data.id);
@@ -159,6 +182,46 @@ export const Repository = {
 		await this.setReports(updatedReports);
 	},
 
+	async editOtherSpending(params: { reportId: number, data: TOtherSpending }): Promise<void> {
+		const reports = await this.getReports();
+		const currentReport = findReport(reports, params.reportId);
+		
+		currentReport.otherSpending = currentReport.otherSpending.map((item) => {
+			if (item.id === params.data.id) {
+				return params.data;
+			} else {
+				return item;
+			}
+		});
+
+		const updatedReports = reports.map((report) => {
+			if (report.id === params.reportId) {
+				return currentReport;
+			} else {
+				return report
+			}
+		});
+
+		await this.setReports(updatedReports);	
+	},
+
+	async deleteOtherSpending(params: { reportId: number, id: number }): Promise<void> {
+		const reports = await this.getReports();
+		const currentReport = findReport(reports, params.reportId);
+		
+		currentReport.otherSpending = currentReport.otherSpending.filter((item) => item.id !== params.id);
+
+		const updatedReports = reports.map((report) => {
+			if (report.id === params.reportId) {
+				return currentReport;
+			} else {
+				return report
+			}
+		});
+
+		await this.setReports(updatedReports);	
+	},
+
 	async addIncome(data: { id: number, value: number, title: string }): Promise<void> {
 		const reports = await this.getReports();
 		const currentReport = findReport(reports, data.id);
@@ -178,6 +241,46 @@ export const Repository = {
 		});
 
 		await this.setReports(updatedReports);
+	},
+
+	async editIncome(params: { reportId: number, data: TIncome }): Promise<void> {
+		const reports = await this.getReports();
+		const currentReport = findReport(reports, params.reportId);
+		
+		currentReport.income = currentReport.income.map((item) => {
+			if (item.id === params.data.id) {
+				return params.data;
+			} else {
+				return item;
+			}
+		});
+
+		const updatedReports = reports.map((report) => {
+			if (report.id === params.reportId) {
+				return currentReport;
+			} else {
+				return report
+			}
+		});
+
+		await this.setReports(updatedReports);	
+	},
+
+	async deleteIncome(params: { reportId: number, id: number }): Promise<void> {
+		const reports = await this.getReports();
+		const currentReport = findReport(reports, params.reportId);
+		
+		currentReport.income = currentReport.income.filter((item) => item.id !== params.id);
+
+		const updatedReports = reports.map((report) => {
+			if (report.id === params.reportId) {
+				return currentReport;
+			} else {
+				return report
+			}
+		});
+
+		await this.setReports(updatedReports);	
 	},
 };
 

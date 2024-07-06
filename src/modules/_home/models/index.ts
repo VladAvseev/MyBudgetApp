@@ -45,6 +45,7 @@ export const home = types.model('home')
 }))
 .actions((self) => ({
 	async start(navigation: INavigation) {
+		self.setIsPending(true);
 		self.setNavigation(navigation);
 		await self.fetch();
 		self.setIsPending(false);

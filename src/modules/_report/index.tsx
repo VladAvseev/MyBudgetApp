@@ -1,6 +1,6 @@
 import { NavigationProp, RouteProp } from '@react-navigation/native';
 import { useEffect } from 'react';
-import { ActivityIndicator, ScrollView, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Button, ScrollView, StyleSheet, View } from 'react-native';
 import { report } from './models';
 import { observer } from 'mobx-react-lite';
 import { DailySpending } from './components/DailySpending';
@@ -13,6 +13,7 @@ import { BackButton } from './components/BackButton';
 import { PageContainer } from '../../components/PageContainer';
 import { Container } from '../../components/Container';
 import { Settings } from './components/Settings';
+import { PendingPage } from '../../components/PendingPage';
 
 type props = {
 	route: RouteProp<{}>;
@@ -21,18 +22,14 @@ type props = {
 
 export const Report: React.FC<props> = observer(({ route, navigation }) => {
 	const { id }= route.params;
-	const {isPending, start} = report;
+	const {isPending, start, updatePage} = report;
 
 	useEffect(() => {
 		start(id, navigation);
 	}, [])
 
 	if (isPending) {
-		return (
-			<View style={styles.container}>
-				<ActivityIndicator />
-			</View>
-		)
+		return <PendingPage />
 	}
 
   return (
@@ -40,6 +37,7 @@ export const Report: React.FC<props> = observer(({ route, navigation }) => {
 			<Header>
 				<View style={styles.header}>
 					<BackButton />
+					<Button title='Обновить' onPress={updatePage} />
 					<Settings />
 				</View>
 			</Header>

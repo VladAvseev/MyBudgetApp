@@ -5,26 +5,33 @@ import { NavigationProp } from "@react-navigation/native";
 import { useEffect } from "react";
 import { home } from "./models";
 import { Header } from "../../components/Header";
-import { Container } from "../../components/Container";
 import { PageContainer } from "../../components/PageContainer";
+import { PendingPage } from "../../components/PendingPage";
 
 type props = {
 	navigation: NavigationProp<{}>;
 }
 
 export const Home: React.FC<props> = observer(({ navigation }) => {
-	const { start } = home;
+	const { start, isPending } = home;
 
 	useEffect(() => {
 		start(navigation);
 	}, []);
 
+	if (isPending) {
+		return <PendingPage />
+	}
+
   return (
 		<>
 			<Header>
 					<View style={styles.header}>
-						<Button title='Все данные' onPress={() => navigation?.navigate('Download')} />
-						<Button title='Загрузить' onPress={() => navigation?.navigate('Upload')} />
+						<Button title='Обновить' onPress={() => start(navigation)} />
+						<View style={styles.actions}>
+							<Button title='Все данные' onPress={() => navigation?.navigate('Download')} />
+							<Button title='Загрузить' onPress={() => navigation?.navigate('Upload')} />
+						</View>
 					</View>
 				</Header>
 			<ScrollView>
@@ -43,7 +50,11 @@ const styles = StyleSheet.create({
 		height: '100%',
 		flexDirection: 'row',
 		alignItems: 'center',
-		justifyContent: 'flex-end',
+		justifyContent: 'space-between',
+	},
+	actions: {
+		flexDirection: 'row',
+		alignItems: 'center',
 		gap: 10,
 	},
 	main: {

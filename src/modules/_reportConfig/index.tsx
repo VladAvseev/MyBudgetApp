@@ -1,6 +1,6 @@
 import { NavigationProp, RouteProp } from '@react-navigation/native';
 import { useEffect } from 'react';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Button, StyleSheet, View } from 'react-native';
 import { observer } from 'mobx-react-lite';
 import { reportConfig } from './models';
 import { Title } from './components/Title';
@@ -38,6 +38,8 @@ export const ReportConfig: React.FC<props> = observer(({ route, navigation }) =>
 			<Header>
 				<View style={styles.header}>
 						<BackButton />
+						<Button title='Обновить' onPress={() => start(id, navigation)} />
+						<View style={styles.empty} />
 					</View>
 			</Header>
 			<PageContainer>
@@ -63,6 +65,10 @@ const styles = StyleSheet.create({
 		height: '100%',
 		flexDirection: 'row',
 		alignItems: 'center',
+		justifyContent: 'space-between',
+	},
+	empty: {
+		width: 30,
 	},
 	main: {
 		paddingBottom: 80,

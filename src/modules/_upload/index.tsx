@@ -8,23 +8,30 @@ import { Header } from "../../components/Header";
 import { BackButton } from "./components/BackButton";
 import { PageContainer } from "../../components/PageContainer";
 import { Container } from "../../components/Container";
+import { PendingPage } from "../../components/PendingPage";
 
 type props = {
 	navigation: NavigationProp<{}>;
 }
 
 export const Upload: React.FC<props> = observer(({ navigation }) => {
-	const { start, save, setReports, field } = upload;
+	const { start, save, setReports, field, isPending } = upload;
 
 	useEffect(() => {
 		start(navigation);
 	}, []);
+
+	if (isPending) {
+		return <PendingPage />
+	}
 
   return (
 		<>
 			<Header>
 				<View style={styles.header}>
 					<BackButton />
+					<Button title='Обновить' onPress={() => start(navigation)} />
+					<View style={styles.empty} />
 				</View>
 			</Header>
 			<PageContainer>
@@ -47,6 +54,10 @@ const styles = StyleSheet.create({
 		height: '100%',
 		flexDirection: 'row',
 		alignItems: 'center',
+		justifyContent: 'space-between',
+	},
+	empty: {
+		width: 30,
 	},
 	main: {
 		minHeight: 800,

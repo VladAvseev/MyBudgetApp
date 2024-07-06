@@ -74,11 +74,7 @@ export const report = types.model('report')
 }))
 .actions((self) => ({
 	async fetch() {
-		console.log(self.id);
 		const report = await Repository.getReportById(self.id);
-		const reports = await Repository.getReports();
-		console.log(report);
-		console.log(reports);
 		self.setTitle(report.config.title);
 		self.setPeriodStart(report.config.periodStart);
 		self.setPeriodEnd(report.config.periodEnd);
@@ -142,7 +138,6 @@ export const report = types.model('report')
 				return item;
 			}
 		}))
-		console.log(self.dailySpending);
 	},
 	setEditOtherSpending(id: number, value: boolean) {
 		self.setOtherSpending(self.otherSpending.map((item) => {
@@ -171,10 +166,18 @@ export const report = types.model('report')
 }))
 .actions((self) => ({
 	async start(id: number, navigation: INavigation) {
+		self.setIsPending(true);
 		self.setNavigation(navigation);
 		self.setId(id);
 		await self.fetch();
 		self.setIsPending(false);
 	},
+}))
+.actions((self) => ({
+	async updatePage() {
+		self.setIsPending(true);
+		await self.fetch();
+		self.setIsPending(false);
+	}
 }))
 .create({})

@@ -13,7 +13,7 @@ export type INavigation = NavigationProp<{}>
 export const upload = types.model('upload')
 .volatile(() => ({
 	navigation: null as INavigation | null,
-	isPending: true,
+	isPending: false,
 	field: VMTextField.create({ placeholder: 'Введите данные в JSON формате' })
 }))
 .views((self) => ({
@@ -31,14 +31,22 @@ export const upload = types.model('upload')
 }))
 .actions((self) => ({
 	async save() {
-		await Repository.uploadReports(self.reports);
+		try {
+			self.setIsPending(true);
+			await Repository.uploadReports(self.reports);
+			self.field.setValue('');
+		} catch {}
+		self.setIsPending(false);
 		self.navigation?.navigate('Home');
-		self.field.setValue('');
 	},
 	async setReports() {
-		await Repository.setReports(self.reports);
+		try {
+			self.setIsPending(true);
+			await Repository.setReports(self.reports);
+			self.field.setValue('');
+		} catch {}
+		self.setIsPending(false);
 		self.navigation?.navigate('Home')
-		self.field.setValue('');
 	}
 }))
 .actions((self) => ({

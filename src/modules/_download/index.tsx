@@ -8,23 +8,30 @@ import { Header } from "../../components/Header";
 import { BackButton } from "./components/BackButton";
 import { Container } from "../../components/Container";
 import { PageContainer } from "../../components/PageContainer";
+import { PendingPage } from "../../components/PendingPage";
 
 type props = {
 	navigation: NavigationProp<{}>;
 }
 
 export const Download: React.FC<props> = observer(({ navigation }) => {
-	const { start, deleteReports, reports } = download;
+	const { start, deleteReports, reports, isPending } = download;
 
 	useEffect(() => {
 		start(navigation);
 	}, []);
+
+	if (isPending) {
+		return <PendingPage />
+	}
 
   return (
 		<>
 			<Header>
 				<View style={styles.header}>
 					<BackButton />
+					<Button title='Обновить' onPress={() => start(navigation)} />
+					<View style={styles.empty} />
 				</View>
 			</Header>
 			<ScrollView>
@@ -44,5 +51,9 @@ const styles = StyleSheet.create({
 		height: '100%',
 		flexDirection: 'row',
 		alignItems: 'center',
+		justifyContent: 'space-between',
 	},
+	empty: {
+		width: 30,
+	}
 });
