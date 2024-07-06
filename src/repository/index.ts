@@ -62,20 +62,21 @@ export const Repository = {
 		AsyncStorage.setItem('reports', JSON.stringify(reports));
 	},
 
-	async uploadReports(newReports: TReport[]): Promise<void> {
+	async uploadReports(data: TReport[]): Promise<void> {
 		const reports = await this.getReports();
-		await this.setReports(
-			reports.concat(
-				newReports.map((report, index) => ({ ...report, id: reports.length + 1 + index, }))
-			)
-		);
+		const newReports = await Promise.all(data.map(async (report, index) => { 
+			const newId = generateId() + index;
+			return { ...report, id: newId, }
+		})) 
+		await this.setReports(reports.concat(newReports));
 	},
 
 	async addReport(): Promise<void> {
 		const reports = await this.getReports();
 
+		const newId = generateId();
 		const newReport: TReport = {
-			id: reports.length + 1,
+			id: newId,
 			config: {
 				title: 'Новый отчёт',
 				periodStart: new Date(),
@@ -122,8 +123,9 @@ export const Repository = {
 		const reports = await this.getReports();
 		const currentReport = findReport(reports, data.id);
 		
+		const newId = generateId();
 		currentReport.dailySpending = currentReport.dailySpending.concat({
-			id: currentReport.dailySpending.length + 1, 
+			id: newId, 
 			value: data.value 
 		});
 
@@ -165,8 +167,9 @@ export const Repository = {
 		const reports = await this.getReports();
 		const currentReport = findReport(reports, data.id);
 		
+		const newId = generateId();
 		currentReport.otherSpending = currentReport.otherSpending.concat({
-			id: currentReport.otherSpending.length + 1, 
+			id: newId, 
 			value: data.value,
 			title: data.title,
 		});
@@ -226,8 +229,9 @@ export const Repository = {
 		const reports = await this.getReports();
 		const currentReport = findReport(reports, data.id);
 		
+		const newId = generateId();
 		currentReport.income = currentReport.income.concat({
-			id: currentReport.income.length + 1, 
+			id: newId, 
 			value: data.value,
 			title: data.title,
 		});
@@ -300,4 +304,8 @@ function findReport(reports: TReport[], id: number): TReport {
 			dailyBudget: Number(report.config.dailyBudget),
 		}
 	};
+}
+
+function generateId(): number {
+	return Date.now();
 }
