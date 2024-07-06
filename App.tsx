@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Home } from './src/modules/_home';
+import { Report } from './src/modules/_report';
+import { ReportConfig } from './src/modules/_reportConfig';
+import { Download } from './src/modules/_download';
+import { Upload } from './src/modules/_upload';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <NavigationContainer>
+				<Stack.Navigator initialRouteName='Home'>
+					<Stack.Screen name="Home" component={Home} options={{headerShown: false}} />
+					<Stack.Screen name="Report" component={Report} options={{headerShown: false}} />
+					<Stack.Screen name="ReportConfig" component={ReportConfig} options={{headerShown: false}} />
+					<Stack.Screen name="Download" component={Download} options={{headerShown: false}} />
+					<Stack.Screen name="Upload" component={Upload} options={{headerShown: false}} />
+				</Stack.Navigator>
+			</NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
