@@ -5,17 +5,25 @@ import { useEffect } from "react";
 import { upload } from "./models";
 import { VTextField } from "../../mvvm/TextField/VTextField";
 import { Header } from "../../components/Header";
-import { BackButton } from "./components/BackButton";
 import { PageContainer } from "../../components/PageContainer";
 import { Container } from "../../components/Container";
 import { PendingPage } from "../../components/PendingPage";
+import { ArrowLeftButton } from "../../components/ArrowLeftButton";
+import { UpdatedButton } from "../../components/UpdateButton";
 
 type props = {
 	navigation: NavigationProp<{}>;
 }
 
 export const Upload: React.FC<props> = observer(({ navigation }) => {
-	const { start, save, setReports, field, isPending } = upload;
+	const { 
+		start,
+		save, 
+		setReports, 
+		field, 
+		isPending,
+		formIsValid,
+	} = upload;
 
 	useEffect(() => {
 		start(navigation);
@@ -29,8 +37,8 @@ export const Upload: React.FC<props> = observer(({ navigation }) => {
 		<>
 			<Header>
 				<View style={styles.header}>
-					<BackButton />
-					<Button title='Обновить' onPress={() => start(navigation)} />
+					<ArrowLeftButton onPress={() => navigation?.navigate('Home')} />
+					<UpdatedButton onPress={() => start(navigation)} />
 					<View style={styles.empty} />
 				</View>
 			</Header>
@@ -40,9 +48,9 @@ export const Upload: React.FC<props> = observer(({ navigation }) => {
 						<VTextField style={styles.text} model={field}/>
 					</Container>
 					<Container>
-						<Button title="Сохранить" onPress={save} />
+						<Button title="Сохранить" onPress={save} disabled={!formIsValid} />
 					</Container>
-					<Button title="Перезаписать" onPress={setReports} />
+					<Button title="Перезаписать" onPress={setReports} disabled={!formIsValid} />
 				</View>
 			</PageContainer>
 		</>

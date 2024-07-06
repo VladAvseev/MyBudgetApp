@@ -20,6 +20,9 @@ export const upload = types.model('upload')
 	get reports(): TReport[] {
 		return JSON.parse(self.field.value);
 	},
+	get formIsValid(): boolean {
+		return !!self.field.value.length;
+	},
 }))
 .actions((self) => ({
 	setNavigation(value: INavigation) {

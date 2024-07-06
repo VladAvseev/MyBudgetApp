@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { observer } from 'mobx-react-lite';
 import { reportConfig } from '../models';
-import { VDatePicker } from '../../../mvvm/DatePicker/VDatePicker';
 import { VNumberField } from '../../../mvvm/NumberField/VNumberField';
+import { Label } from '../../../components/Label';
 
 
 export const DailyBudget: React.FC = observer(() => {
@@ -10,7 +10,7 @@ export const DailyBudget: React.FC = observer(() => {
 
   return (
     <View style={styles.container}>
-			<Text style={styles.label}>Ежедневный бюджет</Text>
+			<Label>Ежедневный бюджет</Label>
 			<VNumberField style={styles.input} model={dailyBudget} />
     </View>
   );
@@ -22,10 +22,6 @@ const styles = StyleSheet.create({
 		gap: 10,
     backgroundColor: '#fff',
   },
-	label: {
-		fontSize: 16,
-		fontWeight: 'bold',
-	},
 	input: {
 		width: '100%',
 	}

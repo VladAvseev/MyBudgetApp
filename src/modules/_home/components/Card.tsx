@@ -20,8 +20,8 @@ export const Card: React.FC<props> = observer(({ card }) => {
 
 const styles = StyleSheet.create({
 	card: {
-		width: 180,
-		height: 180,
+		width: 150,
+		height: 150,
 		borderRadius: 20,
 		borderWidth: 1,
 		alignItems: 'center',

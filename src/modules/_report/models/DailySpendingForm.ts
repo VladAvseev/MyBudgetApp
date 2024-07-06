@@ -11,6 +11,9 @@ export const DailySpendingForm = types.model('DailySpendingForm')
 		return {
 			value: Number(self.field.value),
 		}
+	},
+	get isValid(): boolean {
+		return !!self.field.value.length;
 	}
 }))
 .actions((self) => ({

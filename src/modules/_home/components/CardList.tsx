@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
 		width: '100%',
 		flexWrap: 'wrap',
 		flexDirection: 'row',
-		justifyContent: 'space-between',
+		justifyContent: 'space-around',
 		rowGap: 10,
 		backgroundColor: '#fff',
-	}
+	},
 });

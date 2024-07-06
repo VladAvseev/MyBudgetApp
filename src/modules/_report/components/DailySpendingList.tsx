@@ -2,6 +2,7 @@ import { StyleSheet, Text } from 'react-native';
 import { observer } from 'mobx-react-lite';
 import { report } from '../models';
 import { DailySpendingItem } from './DailySpendingItem';
+import { Label } from '../../../components/Label';
 
 export const DailySpendingList: React.FC = observer(() => {
 	const { 
@@ -22,22 +23,7 @@ export const DailySpendingList: React.FC = observer(() => {
 				
 				return <DailySpendingItem index={index} item={item} sum={currentSumm} date={date} />;
 			})}
-			<Text style={styles.label}>{`Итого: ${sum} | ${(dailyBudget * dailySpending.length - sum).toFixed(2)}`}</Text>
+			<Label>{`Итого: ${sum} | ${(dailyBudget * dailySpending.length - sum).toFixed(2)}`}</Label>
 		</>
   );
-})
-
-const styles = StyleSheet.create({
-  container: {
-		width: '100%',
-		gap: 10,
-  },
-	label: {
-		fontSize: 16,
-		fontWeight: 'bold',
-	},
-	title: {
-		fontSize: 20,
-		fontWeight: 'bold',
-	},
 });

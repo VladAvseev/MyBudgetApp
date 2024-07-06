@@ -1,12 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { observer } from 'mobx-react-lite';
 import { OtherSpendingList } from './OtherSpendingList';
 import { OtherSpendingForm } from './OtherSpendingForm';
+import { Title } from '../../../components/Title';
 
 export const OtherSpending: React.FC = observer(() => {
   return (
     <View style={styles.container}>
-			<Text style={styles.title}>Остальные расходы:</Text>
+			<Title>Остальные расходы:</Title>
 			<OtherSpendingList />
 			<OtherSpendingForm />
     </View>
@@ -19,9 +20,4 @@ const styles = StyleSheet.create({
 		gap: 10,
     backgroundColor: '#fff',
   },
-	title: {
-		fontSize: 20,
-		fontWeight: 'bold',
-	},
-
 });

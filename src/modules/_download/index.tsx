@@ -1,14 +1,14 @@
 import { observer } from "mobx-react-lite";
-import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View, Button } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { useEffect } from "react";
 import { download } from "./models";
-import { ReportsView } from "./components/ReportsView";
 import { Header } from "../../components/Header";
-import { BackButton } from "./components/BackButton";
 import { Container } from "../../components/Container";
 import { PageContainer } from "../../components/PageContainer";
 import { PendingPage } from "../../components/PendingPage";
+import { ArrowLeftButton } from "../../components/ArrowLeftButton";
+import { UpdatedButton } from "../../components/UpdateButton";
 
 type props = {
 	navigation: NavigationProp<{}>;
@@ -29,8 +29,8 @@ export const Download: React.FC<props> = observer(({ navigation }) => {
 		<>
 			<Header>
 				<View style={styles.header}>
-					<BackButton />
-					<Button title='Обновить' onPress={() => start(navigation)} />
+					<ArrowLeftButton onPress={() => navigation?.navigate('Home')} />
+					<UpdatedButton onPress={() => start(navigation)} />
 					<View style={styles.empty} />
 				</View>
 			</Header>

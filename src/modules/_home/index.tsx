@@ -7,6 +7,9 @@ import { home } from "./models";
 import { Header } from "../../components/Header";
 import { PageContainer } from "../../components/PageContainer";
 import { PendingPage } from "../../components/PendingPage";
+import { DownloadButton } from "../../components/DownloadButton";
+import { UploadButton } from "../../components/UploadButton";
+import { UpdatedButton } from "../../components/UpdateButton";
 
 type props = {
 	navigation: NavigationProp<{}>;
@@ -27,11 +30,9 @@ export const Home: React.FC<props> = observer(({ navigation }) => {
 		<>
 			<Header>
 					<View style={styles.header}>
-						<Button title='Обновить' onPress={() => start(navigation)} />
-						<View style={styles.actions}>
-							<Button title='Все данные' onPress={() => navigation?.navigate('Download')} />
-							<Button title='Загрузить' onPress={() => navigation?.navigate('Upload')} />
-						</View>
+						<DownloadButton onPress={() => navigation?.navigate('Download')} />
+						<UpdatedButton onPress={() => start(navigation)} />
+						<UploadButton onPress={() => navigation?.navigate('Upload')} />
 					</View>
 				</Header>
 			<ScrollView>

@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { observer } from 'mobx-react-lite';
 import { reportConfig } from '../models';
 import { VDatePicker } from '../../../mvvm/DatePicker/VDatePicker';
+import { Label } from '../../../components/Label';
 
 
 export const Period: React.FC = observer(() => {
@@ -9,9 +10,9 @@ export const Period: React.FC = observer(() => {
 
   return (
     <View style={styles.container}>
-			<Text style={styles.label}>Начало периода</Text>
+			<Label>Начало периода</Label>
 			<VDatePicker model={periodStart} />
-			<Text style={styles.label}>Конец периода</Text>
+			<Label>Конец периода</Label>
 			<VDatePicker model={periodEnd} />
     </View>
   );
@@ -23,8 +24,4 @@ const styles = StyleSheet.create({
 		gap: 10,
     backgroundColor: '#fff',
   },
-	label: {
-		fontSize: 16,
-		fontWeight: 'bold',
-	}
 });

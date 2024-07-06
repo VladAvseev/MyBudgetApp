@@ -7,6 +7,8 @@ import { OtherSpendingEditForm } from '../models/OtherSpendingEditForm';
 import { useEffect } from 'react';
 import { VTextField } from '../../../mvvm/TextField/VTextField';
 import { VNumberField } from '../../../mvvm/NumberField/VNumberField';
+import { CrossButton } from '../../../components/CrossButton';
+import { EditButton } from '../../../components/EditButton';
 
 type props = {
 	item: TOtherSpending & { isEdit: boolean };
@@ -66,8 +68,8 @@ export const OtherSpendingItem: React.FC<props> = observer(({ item }) => {
 				<Text>{item.title}</Text>
 			</View>
 			<View style={styles.actions}>
-				<Button title='Изм' onPress={() => setEditOtherSpending(item.id, true)} />
-				<Button title='Уд' color='red' onPress={deleteHandler}/>
+				<EditButton onPress={() => setEditOtherSpending(item.id, true)} />
+				<CrossButton onPress={deleteHandler}/>
 			</View>
 		</View>
 	)

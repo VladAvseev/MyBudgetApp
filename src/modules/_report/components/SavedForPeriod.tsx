@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { observer } from 'mobx-react-lite';
 import { report } from '../models';
+import { Title } from '../../../components/Title';
 
 export const SavedForPeriod: React.FC = observer(() => {
 	const { 
@@ -9,7 +10,7 @@ export const SavedForPeriod: React.FC = observer(() => {
 
   return (
     <View style={styles.container}>
-			<Text style={styles.title}>{`Отложено за период: ${savedForPeriod}`}</Text>
+			<Title>{`Отложено за период: ${savedForPeriod}`}</Title>
     </View>
   );
 })
@@ -20,8 +21,4 @@ const styles = StyleSheet.create({
 		gap: 10,
     backgroundColor: '#fff',
   },
-	title: {
-		fontSize: 20,
-		fontWeight: 'bold',
-	},
 });

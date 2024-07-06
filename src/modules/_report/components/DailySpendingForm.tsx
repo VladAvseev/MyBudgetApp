@@ -11,7 +11,8 @@ export const DailySpendingForm: React.FC = observer(() => {
 		addDailySpending, 
 		dailySpendingForm: { 
 			isPending, 
-			field 
+			field,
+			isValid,
 		},
 	} = report;
 
@@ -29,7 +30,7 @@ export const DailySpendingForm: React.FC = observer(() => {
 			return (
 				<View style={styles.form}>
 					<VNumberField model={field}/>
-					<Button title='Добавить' onPress={addDailySpending}/>
+					<Button title='Добавить' onPress={addDailySpending} disabled={!isValid} />
 				</View>
 			)
 		}

@@ -2,11 +2,12 @@ import { StyleSheet, Text, View } from 'react-native';
 import { observer } from 'mobx-react-lite';
 import { IncomeList } from './IncomeList';
 import { IncomeForm } from './IncomeForm';
+import { Title } from '../../../components/Title';
 
 export const Income: React.FC = observer(() => {
   return (
     <View style={styles.container}>
-			<Text style={styles.title}>Доходы:</Text>
+			<Title>Доходы:</Title>
 			<IncomeList />
 			<IncomeForm />
     </View>
@@ -19,8 +20,4 @@ const styles = StyleSheet.create({
 		gap: 10,
     backgroundColor: '#fff',
   },
-	title: {
-		fontSize: 20,
-		fontWeight: 'bold',
-	},
 });

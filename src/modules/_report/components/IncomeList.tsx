@@ -1,7 +1,7 @@
-import { StyleSheet, Text } from 'react-native';
 import { observer } from 'mobx-react-lite';
 import { report } from '../models';
 import { IncomeItem } from './IncomeItem';
+import { Label } from '../../../components/Label';
 
 export const IncomeList: React.FC = observer(() => {
 	const { 
@@ -16,14 +16,7 @@ export const IncomeList: React.FC = observer(() => {
 				sum = Number((sum + item.value).toFixed(2))
 				return <IncomeItem item={item} />
 			})}
-			<Text style={styles.label}>{`Итого: ${sum}`}</Text>
+			<Label>{`Итого: ${sum}`}</Label>
     </>
   );
 })
-
-const styles = StyleSheet.create({
-	label: {
-		fontSize: 16,
-		fontWeight: 'bold',
-	},
-});

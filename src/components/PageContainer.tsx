@@ -17,7 +17,7 @@ export const PageContainer: React.FC<props> = observer(({ children })  => {
 const styles = StyleSheet.create({
 	container: {
 		width: '100%',
-		padding: 10,
+		padding: 20,
 		backgroundColor: '#FFF',
 	},
 });

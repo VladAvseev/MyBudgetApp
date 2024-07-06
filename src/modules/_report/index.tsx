@@ -1,19 +1,20 @@
 import { NavigationProp, RouteProp } from '@react-navigation/native';
 import { useEffect } from 'react';
-import { ActivityIndicator, Button, ScrollView, StyleSheet, View } from 'react-native';
+import { Button, ScrollView, StyleSheet, View } from 'react-native';
 import { report } from './models';
 import { observer } from 'mobx-react-lite';
 import { DailySpending } from './components/DailySpending';
 import { OtherSpending } from './components/OtherSpending';
 import { Income } from './components/Income';
 import { SavedForPeriod } from './components/SavedForPeriod';
-import { Title } from './components/Title';
 import { Header } from '../../components/Header';
-import { BackButton } from './components/BackButton';
 import { PageContainer } from '../../components/PageContainer';
 import { Container } from '../../components/Container';
-import { Settings } from './components/Settings';
 import { PendingPage } from '../../components/PendingPage';
+import { Title } from '../../components/Title';
+import { ArrowLeftButton } from '../../components/ArrowLeftButton';
+import { BurgerButton } from '../../components/BurgerButton';
+import { UpdatedButton } from '../../components/UpdateButton';
 
 type props = {
 	route: RouteProp<{}>;
@@ -22,7 +23,7 @@ type props = {
 
 export const Report: React.FC<props> = observer(({ route, navigation }) => {
 	const { id }= route.params;
-	const {isPending, start, updatePage} = report;
+	const {isPending, start, updatePage, title} = report;
 
 	useEffect(() => {
 		start(id, navigation);
@@ -36,16 +37,16 @@ export const Report: React.FC<props> = observer(({ route, navigation }) => {
 		<>
 			<Header>
 				<View style={styles.header}>
-					<BackButton />
-					<Button title='Обновить' onPress={updatePage} />
-					<Settings />
+					<ArrowLeftButton onPress={() => navigation?.navigate('Home')} />
+					<UpdatedButton onPress={updatePage} />
+					<BurgerButton onPress={() => navigation?.navigate('ReportConfig', { id: id })} />
 				</View>
 			</Header>
 		<ScrollView>
 			<PageContainer>
 				<View style={styles.container}>
 					<Container>
-						<Title />
+						<Title>{title}</Title>
 					</Container>
 					<Container>
 						<SavedForPeriod />

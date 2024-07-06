@@ -6,6 +6,7 @@ import { TDailySpending } from '../../../repository';
 import { useLocalModel } from '../../../utils/useLocalModal';
 import { useEffect } from 'react';
 import { DailySpendingEditForm } from '../models/DailySpendingEditForm';
+import { EditButton } from '../../../components/EditButton';
 
 type props = {
 	index: number;
@@ -63,7 +64,7 @@ export const DailySpendingItem: React.FC<props> = observer(({ index, item, sum, 
 				<Text>{` | `}</Text>
 				<Text>{(dailyBudget * (index + 1) - sum).toFixed(2)}</Text>
 			</View>
-			<Button title='Изм' onPress={() => setEditDailySpending(item.id, true)} />
+			<EditButton onPress={() => setEditDailySpending(item.id, true)} />
 		</View>
 	)
 })

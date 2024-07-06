@@ -7,6 +7,8 @@ import { useEffect } from 'react';
 import { VTextField } from '../../../mvvm/TextField/VTextField';
 import { VNumberField } from '../../../mvvm/NumberField/VNumberField';
 import { IncomeEditForm } from '../models/IncomeEditForm';
+import { CrossButton } from '../../../components/CrossButton';
+import { EditButton } from '../../../components/EditButton';
 
 type props = {
 	item: TIncome & { isEdit: boolean };
@@ -66,8 +68,8 @@ export const IncomeItem: React.FC<props> = observer(({ item }) => {
 				<Text>{item.title}</Text>
 			</View>
 			<View style={styles.actions}>
-				<Button title='Изм' onPress={() => setEditIncome(item.id, true)} />
-				<Button title='Уд' color='red' onPress={deleteHandler}/>
+				<EditButton onPress={() => setEditIncome(item.id, true)} />
+				<CrossButton onPress={deleteHandler}/>
 			</View>
 		</View>
 	)

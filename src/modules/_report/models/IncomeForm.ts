@@ -14,6 +14,9 @@ export const IncomeForm = types.model('IncomeForm')
 			value: Number(self.field.value),
 			title: self.title.value,
 		}
+	},
+	get isValid(): boolean {
+		return !!(self.field.value.length && self.title.value.length);
 	}
 }))
 .actions((self) => ({

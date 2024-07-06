@@ -1,16 +1,17 @@
 import { NavigationProp, RouteProp } from '@react-navigation/native';
 import { useEffect } from 'react';
-import { ActivityIndicator, Button, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Button, ScrollView, StyleSheet, View } from 'react-native';
 import { observer } from 'mobx-react-lite';
 import { reportConfig } from './models';
 import { Title } from './components/Title';
 import { Period } from './components/Period';
 import { DailyBudget } from './components/DailyBudget';
 import { Actions } from './components/Actions';
-import { BackButton } from './components/BackButton';
 import { Header } from '../../components/Header';
 import { PageContainer } from '../../components/PageContainer';
 import { Container } from '../../components/Container';
+import { ArrowLeftButton } from '../../components/ArrowLeftButton';
+import { UpdatedButton } from '../../components/UpdateButton';
 
 type props = {
 	route: RouteProp<{}>;
@@ -37,25 +38,27 @@ export const ReportConfig: React.FC<props> = observer(({ route, navigation }) =>
 		<>
 			<Header>
 				<View style={styles.header}>
-						<BackButton />
-						<Button title='Обновить' onPress={() => start(id, navigation)} />
+						<ArrowLeftButton onPress={() => navigation?.navigate('Report', { id: id })} />
+						<UpdatedButton onPress={() => start(id, navigation)} />
 						<View style={styles.empty} />
 					</View>
 			</Header>
-			<PageContainer>
-				<View style={styles.main}>
-					<View>
-						<Container>
-							<Title />
-						</Container>
-						<Container>
-							<Period />
-						</Container>
-						<DailyBudget />
+			<ScrollView>
+				<PageContainer>
+					<View style={styles.main}>
+						<View>
+							<Container>
+								<Title />
+							</Container>
+							<Container>
+								<Period />
+							</Container>
+							<DailyBudget />
+						</View>
+						<Actions />
 					</View>
-					<Actions />
-				</View>
-			</PageContainer>
+				</PageContainer>
+			</ScrollView>
 		</>
   );
 })
