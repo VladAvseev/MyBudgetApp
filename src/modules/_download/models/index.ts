@@ -1,6 +1,7 @@
 import { NavigationProp } from "@react-navigation/native";
 import { types } from "mobx-state-tree";
 import { Repository } from "../../../repository";
+import { VMTextField } from "../../../mvvm/TextField/VMTextField";
 
 export type ICard = {
 	id: number;
@@ -14,11 +15,12 @@ export const download = types.model('download')
 	navigation: null as INavigation | null,
 	isPending: true,
 	reports: '',
+	deleteField: VMTextField.create({ placeholder: 'Для удаления даннных введите ПОДТВЕРЖДАЮ' })
 }))
 .views((self) => ({
-	get path() {
-		return 'data.json';
-	}
+	get canDelete(): boolean {
+		return self.deleteField.value === 'ПОДТВЕРЖДАЮ';
+	},
 }))
 .actions((self) => ({
 	setNavigation(value: INavigation) {
@@ -38,6 +40,7 @@ export const download = types.model('download')
 	},
 	async deleteReports() {
 		await Repository.setReports([]);
+		self.deleteField.setValue('');
 		self.navigation?.navigate('Home');
 	},
 }))

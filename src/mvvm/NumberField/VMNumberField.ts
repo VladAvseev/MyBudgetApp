@@ -10,7 +10,7 @@ export const VMNumberField = types.model('VMNumberField', {
 }))
 .actions((self) => ({
 	setValue(value: string) {
-		self.value = value;
+		self.value = value.trim();
 	},
 }))
 .actions((self) => ({

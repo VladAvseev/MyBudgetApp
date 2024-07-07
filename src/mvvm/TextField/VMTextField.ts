@@ -6,10 +6,15 @@ export const VMTextField = types.model('VMTextField', {
 	placeholder: types.optional(types.string, ''),
 })
 .volatile(() => ({
-	value: '',
+	inputValue: '',
+}))
+.views((self) => ({
+	get value(): string {
+		return self.inputValue.trim();
+	}
 }))
 .actions((self) => ({
 	setValue(value: string) {
-		self.value = value;
+		self.inputValue = value;
 	},
 }));

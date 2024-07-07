@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Мой бюджет",
-    "slug": "Мой бюджет",
+    "slug": "budget",
     "version": "1.1.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

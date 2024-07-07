@@ -9,13 +9,21 @@ import { PageContainer } from "../../components/PageContainer";
 import { PendingPage } from "../../components/PendingPage";
 import { ArrowLeftButton } from "../../components/ArrowLeftButton";
 import { UpdatedButton } from "../../components/UpdateButton";
+import { VTextField } from "../../mvvm/TextField/VTextField";
 
 type props = {
 	navigation: NavigationProp<{}>;
 }
 
 export const Download: React.FC<props> = observer(({ navigation }) => {
-	const { start, deleteReports, reports, isPending } = download;
+	const { 
+		start, 
+		deleteReports, 
+		reports, 
+		isPending, 
+		deleteField, 
+		canDelete 
+	} = download;
 
 	useEffect(() => {
 		start(navigation);
@@ -39,7 +47,12 @@ export const Download: React.FC<props> = observer(({ navigation }) => {
 					<Container>
 						<Text selectable>{reports}</Text>	
 					</Container>
-					<Button color={'red'} title="Удалить все очёты" onPress={deleteReports} />
+					<Container>
+						<Container>
+							<VTextField style={styles.deleteField} model={deleteField}/>
+						</Container>
+						<Button disabled={!canDelete} color={'red'} title="Удалить все очёты" onPress={deleteReports} />
+					</Container>
 				</PageContainer>
 			</ScrollView>
 		</>
@@ -55,5 +68,8 @@ const styles = StyleSheet.create({
 	},
 	empty: {
 		width: 30,
-	}
+	},
+	deleteField: {
+		width: '100%',
+	},
 });

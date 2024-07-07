@@ -9,7 +9,7 @@ type props = {
 
 export const VTextField: React.FC<props> = observer(({ model, style }) => {
 	const {
-		value,
+		inputValue,
 		setValue,
 		placeholder,
 	} = model;
@@ -18,7 +18,7 @@ export const VTextField: React.FC<props> = observer(({ model, style }) => {
 		<TextInput
 			style={{...styles.main, ...style}}
 			placeholder={placeholder}
-			value={value}
+			value={inputValue}
 			onChangeText={setValue}
 		/>
   );
