@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
 	},
 	line1: {
 		position: 'absolute',
-		left: '36%',
-		top: '5%',
+		left: 8,
+		top: 3,
 
 		width: 6,
 		height: 24,
