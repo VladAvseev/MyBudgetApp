@@ -10,6 +10,7 @@ import { EditIcon } from '../../../components/Icons/EditIcon';
 import { IconButton } from '../../../components/IconButton';
 import { Label } from '../../../components/Label';
 import { TextButton } from '../../../components/TextButton';
+import { VNumberField } from '../../../mvvm/NumberField/VNumberField';
 
 type props = {
 	index: number;
@@ -30,6 +31,7 @@ export const DailySpendingItem: React.FC<props> = observer(({ index, item, sum, 
 
 	useEffect(() => {
 		form.field.onChange(item.value.toString());
+
 	}, []);
 
 	const saveHandler = async () => {
@@ -43,7 +45,7 @@ export const DailySpendingItem: React.FC<props> = observer(({ index, item, sum, 
 		return (
 			<View key={item.id} style={{ ...styles.container, ...styles.editBack }}>
 				<Text>{date.toLocaleDateString()}</Text>
-				<VTextField model={form.field}/>
+				<VNumberField model={form.field}/>
 				{
 					item.value.toString() !== form.field.value 
 					?
@@ -65,7 +67,13 @@ export const DailySpendingItem: React.FC<props> = observer(({ index, item, sum, 
 					<Label>{item.value}</Label>
 					<Label>{`(${sum}/${dailyBudget * (index + 1)})`}</Label>
 					<View style={styles.flexRow}>
-						<View style={Number((dailyBudget * (index + 1) - sum).toFixed(2)) >= 0 ? styles.arrowTop : styles.arrowBotom } />
+						{
+							Number((dailyBudget * (index + 1) - sum).toFixed(2)) !== 0 
+							? 
+								<View style={Number((dailyBudget * (index + 1) - sum).toFixed(2)) > 0 ? styles.arrowTop : styles.arrowBotom } /> 
+							: 
+								null
+						}
 						<Label>{(Math.abs(dailyBudget * (index + 1) - sum)).toFixed(2)}</Label>
 					</View>
 				</View>
