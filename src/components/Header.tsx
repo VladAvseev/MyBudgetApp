@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { PlatformColor, StyleSheet, View } from 'react-native';
 import { observer } from 'mobx-react-lite';
 import { ReactNode } from 'react';
 
@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
 		height: 70,
 		padding: 10,
 		paddingHorizontal: 20,
-		backgroundColor: 'rgb(230, 230, 230)',
 		borderTopWidth: 1,
+		backgroundColor: 'rgb(245, 245, 245)',
 	},
 	header: {
 		width: '100%',

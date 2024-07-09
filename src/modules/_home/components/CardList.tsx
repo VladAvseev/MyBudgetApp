@@ -22,5 +22,6 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-around',
 		rowGap: 10,
 		backgroundColor: 'transparent',
+		paddingBottom: 10,
 	},
 });

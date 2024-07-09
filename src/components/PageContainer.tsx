@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 		width: '100%',
 		padding: 20,
 		paddingTop: 40,
-		paddingBottom: 100,
-		backgroundColor: 'rgb(230, 230, 230)',
+		paddingBottom: 70,
+		backgroundColor: 'transparent',
 	},
 });

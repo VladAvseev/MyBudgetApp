@@ -50,18 +50,16 @@ export const ReportConfig: React.FC<props> = observer(({ route, navigation }) =>
 			</Header>
 			<ScrollView>
 				<PageContainer style={styles.pageCotainer}>
-					<View style={styles.main}>
-						<View>
-							<Container>
-								<Title />
-							</Container>
-							<Container>
-								<Period />
-							</Container>
-							<DailyBudget />
-						</View>
-						<Actions />
-					</View>
+					<Container>
+						<Title />
+					</Container>
+					<Container>
+						<Period />
+					</Container>
+					<Container>
+						<DailyBudget />
+					</Container>
+					<Actions />
 				</PageContainer>
 			</ScrollView>
 		</>
@@ -81,15 +79,8 @@ const styles = StyleSheet.create({
 	empty: {
 		width: 50,
 	},
-	main: {
-		paddingBottom: 80,
-		minHeight: 800,
-		flexDirection: 'column',
-		justifyContent: 'space-between',
-	},
   container: {
     flex: 1,
 		gap: 10,
-    backgroundColor: 'transparent',
   },
 });

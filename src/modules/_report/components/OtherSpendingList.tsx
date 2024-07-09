@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { report } from '../models';
 import { OtherSpendingItem } from './OtherSpendingItem';
-import { Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 export const OtherSpendingList: React.FC = observer(() => {
 	const { 
@@ -15,11 +15,20 @@ export const OtherSpendingList: React.FC = observer(() => {
 	}
 
   return (
-    <>
+		<View style={styles.container}>
 			{otherSpending.map((item) => {
 				sum = Number((sum + item.value).toFixed(2))
 				return <OtherSpendingItem item={item} />
 			})}
-    </>
+    </View>
   );
 })
+
+const styles = StyleSheet.create({
+	container: {
+		flexDirection: 'column',
+		alignItems: 'flex-start',
+		gap: 5,
+		paddingBottom: 150,
+	},
+});

@@ -12,7 +12,14 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
       <NavigationContainer>
-				<Stack.Navigator initialRouteName='Home'>
+				<Stack.Navigator 
+					screenOptions={{
+						contentStyle:{
+							backgroundColor:'rgb(245, 245, 245)'
+						}
+					}}
+					initialRouteName='Home'
+				>
 					<Stack.Screen name="Home" component={Home} options={{headerShown: false}} />
 					<Stack.Screen name="Report" component={Report} options={{headerShown: false}} />
 					<Stack.Screen name="ReportConfig" component={ReportConfig} options={{headerShown: false}} />

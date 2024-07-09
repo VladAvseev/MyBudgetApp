@@ -52,7 +52,7 @@ export const IncomeItem: React.FC<props> = observer(({ item }) => {
 					<VNumberField model={form.field}/>
 					<VTextField model={form.title}/>
 					{
-						item.value.toString() !== form.field.value 
+						item.value.toString() !== form.field.value || item.title !== form.title.value
 						?
 						<TextButton title='Сохранить' onPress={saveHandler} />
 						:

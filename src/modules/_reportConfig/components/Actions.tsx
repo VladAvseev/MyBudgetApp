@@ -3,6 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { reportConfig } from '../models';
 import { VTextField } from '../../../mvvm/TextField/VTextField';
 import { TextButton } from '../../../components/TextButton';
+import { Label } from '../../../components/Label';
 
 export const Actions: React.FC = observer(() => {
 	const { isEdit, onSave, onCancel, onDelete, deleteField, isDeleteButtonDisabled } = reportConfig;
@@ -13,14 +14,20 @@ export const Actions: React.FC = observer(() => {
 				isEdit 
 					? 
 						<View style={styles.row}>
-							<TextButton title='Сохранить' onPress={onSave} />
-							<TextButton title='Отменить' onPress={onCancel} />
+							<View style={{width: '49%'}}>
+								<TextButton title='Сохранить' onPress={onSave} />
+							</View>
+							<View style={{width: '49%'}}>
+								<TextButton title='Отменить' onPress={onCancel} />
+							</View>
 						</View>
-					: <View style={styles.column}>
+					: 
+						<View style={styles.column}>
+							<Label>Удаление отчёта:</Label>
 							<VTextField style={styles.delete} model={deleteField}/>
 							<View style={styles.delete}>
 								<TextButton 
-									title='Удалить отчёт' 
+									title='Удалить' 
 									onPress={onDelete} color={'red'} 
 									disabled={isDeleteButtonDisabled} 
 								/>
@@ -37,14 +44,12 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		gap: 10,
-		backgroundColor: 'transparent',
   },
   column: {
 		width: '100%',
 		flexDirection: 'column',
-		alignItems: 'center',
+		alignItems: 'flex-start',
 		gap: 10,
-		backgroundColor: 'transparent',
   },
 	delete: {
 		width: '100%',

@@ -30,23 +30,21 @@ export const Home: React.FC<props> = observer(({ navigation }) => {
   return (
 		<>
 			<Header>
-					<View style={styles.header}>
-						<IconButton onPress={() => navigation?.navigate('Download')}>
-							<DownloadIcon />
-						</IconButton>
-						<IconButton onPress={() => start(navigation)}>
-							<UpdatedIcon />
-						</IconButton>
-						<IconButton onPress={() => navigation?.navigate('Upload')}>
-							<UploadIcon />
-						</IconButton>
-					</View>
-				</Header>
+				<View style={styles.header}>
+					<IconButton onPress={() => navigation?.navigate('Download')}>
+						<DownloadIcon />
+					</IconButton>
+					<IconButton onPress={() => start(navigation)}>
+						<UpdatedIcon />
+					</IconButton>
+					<IconButton onPress={() => navigation?.navigate('Upload')}>
+						<UploadIcon />
+					</IconButton>
+				</View>
+			</Header>
 			<ScrollView>
 				<PageContainer>
-					<View style={styles.main}>
-						<CardList />
-					</View>
+					<CardList />
 				</PageContainer>
 			</ScrollView>
 		</>
@@ -55,7 +53,6 @@ export const Home: React.FC<props> = observer(({ navigation }) => {
 
 const styles = StyleSheet.create({
 	header: {
-		height: '100%',
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-between',
@@ -64,9 +61,5 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		gap: 10,
-	},
-	main: {
-		width: '100%',
-		minHeight: 700,
 	},
 });

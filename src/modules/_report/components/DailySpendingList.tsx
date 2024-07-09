@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { report } from '../models';
 import { DailySpendingItem } from './DailySpendingItem';
-import { Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 export const DailySpendingList: React.FC = observer(() => {
 	const { 
@@ -16,7 +16,7 @@ export const DailySpendingList: React.FC = observer(() => {
 	}
 
   return (
-    <>
+    <View style={styles.container}>
 			{dailySpending.map((item, index) => {
 				const date = new Date(periodStart.getTime());
 				date.setDate(periodStart.getDate() + index);
@@ -25,6 +25,15 @@ export const DailySpendingList: React.FC = observer(() => {
 				
 				return <DailySpendingItem index={index} item={item} sum={currentSumm} date={date} />;
 			})}
-		</>
+		</View>
   );
+});
+
+const styles = StyleSheet.create({
+	container: {
+		flexDirection: 'column',
+		alignItems: 'flex-start',
+		gap: 5,
+		paddingBottom: 100,
+	},
 });

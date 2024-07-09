@@ -10,7 +10,7 @@ export const SavedForPeriod: React.FC = observer(() => {
 
   return (
     <View style={styles.container}>
-			<Title>{`Отложено за период: ${savedForPeriod}`}</Title>
+			<Title style={{ color: '#FFF', }}>{`Отложено за период: ${savedForPeriod}`}</Title>
     </View>
   );
 })
@@ -19,6 +19,5 @@ const styles = StyleSheet.create({
   container: {
 		width: '100%',
 		gap: 10,
-    backgroundColor: 'transparent',
   },
 });

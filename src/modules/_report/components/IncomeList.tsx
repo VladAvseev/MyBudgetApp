@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { report } from '../models';
 import { IncomeItem } from './IncomeItem';
-import { Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 export const IncomeList: React.FC = observer(() => {
 	const { 
@@ -15,11 +15,19 @@ export const IncomeList: React.FC = observer(() => {
 	}
 
   return (
-    <>
+    <View style={styles.container}>
 			{income.map((item) => {
 				sum = Number((sum + item.value).toFixed(2))
 				return <IncomeItem item={item} />
 			})}
-    </>
+    </View>
   );
 })
+
+const styles = StyleSheet.create({
+  container: {
+		width: '100%',
+		gap: 10,
+		paddingBottom: 150,
+  },
+});

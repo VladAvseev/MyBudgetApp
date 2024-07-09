@@ -45,14 +45,14 @@ export const OtherSpendingItem: React.FC<props> = observer(({ item }) => {
 		setEditOtherSpending(item.id, false);
 		updatePage();	
 	}
-	
+
 	if (item.isEdit) {
 		return (
 			<View key={item.id} style={styles.container}>
 					<VNumberField model={form.field}/>
 					<VTextField model={form.title}/>
 					{
-						item.value.toString() !== form.field.value 
+						item.value.toString() !== form.field.value || item.title !== form.title.value
 						?
 						<TextButton title='Сохранить' onPress={saveHandler} />
 						:

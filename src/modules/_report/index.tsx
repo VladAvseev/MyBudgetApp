@@ -1,6 +1,6 @@
 import { NavigationProp, RouteProp } from '@react-navigation/native';
-import { useEffect } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { StyleSheet, useWindowDimensions, View } from 'react-native';
 import { report } from './models';
 import { observer } from 'mobx-react-lite';
 import { SavedForPeriod } from './components/SavedForPeriod';
@@ -12,10 +12,16 @@ import { ArrowLeftIcon } from '../../components/Icons/ArrowLeftIcon';
 import { BurgerIcon } from '../../components/Icons/BurgerIcon';
 import { UpdatedIcon } from '../../components/Icons/UpdateIcon';
 import { IconButton } from '../../components/IconButton';
-import { Form } from './components/Form';
-import { DailySpendingList } from './components/DailySpendingList';
-import { OtherSpendingList } from './components/OtherSpendingList';
-import { IncomeList } from './components/IncomeList';
+import { SceneMap, TabView } from 'react-native-tab-view';
+import { DailySpending } from './components/DailySpending';
+import { OtherSpending } from './components/OtherSpending';
+import { Income } from './components/Income';
+
+const renderScene = SceneMap({
+  first: DailySpending,
+  second: OtherSpending,
+  third: Income,
+});
 
 type props = {
 	route: RouteProp<{}>;
@@ -29,6 +35,15 @@ export const Report: React.FC<props> = observer(({ route, navigation }) => {
 	useEffect(() => {
 		start(id, navigation);
 	}, [])
+
+	const layout = useWindowDimensions();
+
+  const [index, setIndex] = useState(0);
+  const [routes] = useState([
+    { key: 'first', title: 'Ежедневные расходы' },
+    { key: 'second', title: 'Остальные расходы' },
+    { key: 'third', title: 'Доходы' },
+  ]);
 
 	if (isPending) {
 		return <PendingPage />
@@ -49,19 +64,16 @@ export const Report: React.FC<props> = observer(({ route, navigation }) => {
 					</IconButton>
 				</View>
 			</Header>
-		<ScrollView>
-			<PageContainer>
-				<View style={styles.container}>
-					<Form />
-					<Title>Ежедневные расходы:</Title>
-					<DailySpendingList />
-					<Title>Остальные расходы:</Title>
-					<OtherSpendingList />
-					<Title>Доходы:</Title>
-					<IncomeList />
-				</View>
+			<PageContainer style={{ paddingBottom: 20, backgroundColor: 'rgb(33, 150, 243)'}}>
+				<Title style={{ color: '#FFF' }}>{title}</Title>
+				<SavedForPeriod />
 			</PageContainer>
-		</ScrollView>
+			<TabView
+				navigationState={{ index, routes }}
+				renderScene={renderScene}
+				onIndexChange={setIndex}
+				initialLayout={{ width: layout.width }}
+			/>
 		</>
   );
 })
