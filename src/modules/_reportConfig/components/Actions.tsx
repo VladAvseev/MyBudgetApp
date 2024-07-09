@@ -23,7 +23,7 @@ export const Actions: React.FC = observer(() => {
 						</View>
 					: 
 						<View style={styles.column}>
-							<Label>Удаление отчёта:</Label>
+							<Label>Удаление отчёта</Label>
 							<VTextField style={styles.delete} model={deleteField}/>
 							<View style={styles.delete}>
 								<TextButton 
