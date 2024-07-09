@@ -1,20 +1,21 @@
 import { NavigationProp, RouteProp } from '@react-navigation/native';
 import { useEffect } from 'react';
-import { Button, ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { report } from './models';
 import { observer } from 'mobx-react-lite';
-import { DailySpending } from './components/DailySpending';
-import { OtherSpending } from './components/OtherSpending';
-import { Income } from './components/Income';
 import { SavedForPeriod } from './components/SavedForPeriod';
 import { Header } from '../../components/Header';
 import { PageContainer } from '../../components/PageContainer';
-import { Container } from '../../components/Container';
 import { PendingPage } from '../../components/PendingPage';
 import { Title } from '../../components/Title';
-import { ArrowLeftButton } from '../../components/ArrowLeftButton';
-import { BurgerButton } from '../../components/BurgerButton';
-import { UpdatedButton } from '../../components/UpdateButton';
+import { ArrowLeftIcon } from '../../components/Icons/ArrowLeftIcon';
+import { BurgerIcon } from '../../components/Icons/BurgerIcon';
+import { UpdatedIcon } from '../../components/Icons/UpdateIcon';
+import { IconButton } from '../../components/IconButton';
+import { Form } from './components/Form';
+import { DailySpendingList } from './components/DailySpendingList';
+import { OtherSpendingList } from './components/OtherSpendingList';
+import { IncomeList } from './components/IncomeList';
 
 type props = {
 	route: RouteProp<{}>;
@@ -37,27 +38,27 @@ export const Report: React.FC<props> = observer(({ route, navigation }) => {
 		<>
 			<Header>
 				<View style={styles.header}>
-					<ArrowLeftButton onPress={() => navigation?.navigate('Home')} />
-					<UpdatedButton onPress={updatePage} />
-					<BurgerButton onPress={() => navigation?.navigate('ReportConfig', { id: id })} />
+					<IconButton onPress={() => navigation?.navigate('Home')}>
+						<ArrowLeftIcon />
+					</IconButton>
+					<IconButton onPress={updatePage}>
+						<UpdatedIcon />
+					</IconButton>
+					<IconButton onPress={() => navigation?.navigate('ReportConfig', { id: id })}>
+						<BurgerIcon />
+					</IconButton>
 				</View>
 			</Header>
 		<ScrollView>
 			<PageContainer>
 				<View style={styles.container}>
-					<Container>
-						<Title>{title}</Title>
-					</Container>
-					<Container>
-						<SavedForPeriod />
-					</Container>
-					<Container>
-						<DailySpending />
-					</Container>
-					<Container>
-						<OtherSpending />
-					</Container>
-					<Income />
+					<Form />
+					<Title>Ежедневные расходы:</Title>
+					<DailySpendingList />
+					<Title>Остальные расходы:</Title>
+					<OtherSpendingList />
+					<Title>Доходы:</Title>
+					<IncomeList />
 				</View>
 			</PageContainer>
 		</ScrollView>
@@ -73,6 +74,9 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 	},
   container: {
-		minHeight: 800,
+		minHeight: 700,
+		flexDirection: 'column',
+		alignItems: 'flex-start',
+		gap: 10
   },
 });

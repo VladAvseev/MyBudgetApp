@@ -7,9 +7,11 @@ import { Header } from "../../components/Header";
 import { Container } from "../../components/Container";
 import { PageContainer } from "../../components/PageContainer";
 import { PendingPage } from "../../components/PendingPage";
-import { ArrowLeftButton } from "../../components/ArrowLeftButton";
-import { UpdatedButton } from "../../components/UpdateButton";
 import { VTextField } from "../../mvvm/TextField/VTextField";
+import { IconButton } from "../../components/IconButton";
+import { ArrowLeftIcon } from "../../components/Icons/ArrowLeftIcon";
+import { UpdatedIcon } from "../../components/Icons/UpdateIcon";
+import { TextButton } from "../../components/TextButton";
 
 type props = {
 	navigation: NavigationProp<{}>;
@@ -37,8 +39,12 @@ export const Download: React.FC<props> = observer(({ navigation }) => {
 		<>
 			<Header>
 				<View style={styles.header}>
-					<ArrowLeftButton onPress={() => navigation?.navigate('Home')} />
-					<UpdatedButton onPress={() => start(navigation)} />
+					<IconButton onPress={() => navigation?.navigate('Home')}>
+						<ArrowLeftIcon />
+					</IconButton>
+					<IconButton onPress={() => start(navigation)}>
+						<UpdatedIcon />
+					</IconButton>
 					<View style={styles.empty} />
 				</View>
 			</Header>
@@ -51,7 +57,7 @@ export const Download: React.FC<props> = observer(({ navigation }) => {
 						<Container>
 							<VTextField style={styles.deleteField} model={deleteField}/>
 						</Container>
-						<Button disabled={!canDelete} color={'red'} title="Удалить все очёты" onPress={deleteReports} />
+						<TextButton disabled={!canDelete} color={'red'} title="Удалить все очёты" onPress={deleteReports} />
 					</Container>
 				</PageContainer>
 			</ScrollView>
@@ -67,7 +73,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 	},
 	empty: {
-		width: 30,
+		width: 50,
 	},
 	deleteField: {
 		width: '100%',

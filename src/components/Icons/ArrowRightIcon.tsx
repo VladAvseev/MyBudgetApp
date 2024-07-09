@@ -1,26 +1,20 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { observer } from 'mobx-react-lite';
 
-type props = {
-	onPress: () => void;
-	color?: string;
-	disabled?: boolean;
-}
-
-export const ArrowRightButton: React.FC<props> = observer(({ onPress, disabled })  => {
+export const ArrowRightIcon: React.FC = observer(()  => {
   return (
-		<Pressable style={styles.icon} onPress={onPress} disabled={disabled}>
+		<View style={styles.icon}>
 			<View style={styles.line1} />
 			<View style={styles.line2} />
-		</Pressable>
+		</View>
 	)
 })
 
 const styles = StyleSheet.create({
 	icon: {
 		width: 30,
-		height: 12,
-		paddingLeft: 4,
+		height: 30,
+		paddingVertical: 8,
 		flexDirection: 'column',
 		justifyContent: 'space-between',
 		alignItems: 'center',

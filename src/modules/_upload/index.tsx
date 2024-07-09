@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { Button, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { useEffect } from "react";
 import { upload } from "./models";
@@ -8,8 +8,10 @@ import { Header } from "../../components/Header";
 import { PageContainer } from "../../components/PageContainer";
 import { Container } from "../../components/Container";
 import { PendingPage } from "../../components/PendingPage";
-import { ArrowLeftButton } from "../../components/ArrowLeftButton";
-import { UpdatedButton } from "../../components/UpdateButton";
+import { ArrowLeftIcon } from "../../components/Icons/ArrowLeftIcon";
+import { UpdatedIcon } from "../../components/Icons/UpdateIcon";
+import { IconButton } from "../../components/IconButton";
+import { TextButton } from "../../components/TextButton";
 
 type props = {
 	navigation: NavigationProp<{}>;
@@ -37,8 +39,12 @@ export const Upload: React.FC<props> = observer(({ navigation }) => {
 		<>
 			<Header>
 				<View style={styles.header}>
-					<ArrowLeftButton onPress={() => navigation?.navigate('Home')} />
-					<UpdatedButton onPress={() => start(navigation)} />
+					<IconButton onPress={() => navigation?.navigate('Home')}>
+						<ArrowLeftIcon />
+					</IconButton>
+					<IconButton onPress={() => start(navigation)}>
+						<UpdatedIcon />
+					</IconButton>
 					<View style={styles.empty} />
 				</View>
 			</Header>
@@ -48,9 +54,9 @@ export const Upload: React.FC<props> = observer(({ navigation }) => {
 						<VTextField style={styles.text} model={field}/>
 					</Container>
 					<Container>
-						<Button title="Сохранить" onPress={save} disabled={!formIsValid} />
+						<TextButton title="Сохранить" onPress={save} disabled={!formIsValid} />
 					</Container>
-					<Button title="Перезаписать" onPress={setReports} disabled={!formIsValid} />
+					<TextButton title="Перезаписать" onPress={setReports} disabled={!formIsValid} />
 				</View>
 			</PageContainer>
 		</>
@@ -65,10 +71,10 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 	},
 	empty: {
-		width: 30,
+		width: 50,
 	},
 	main: {
-		minHeight: 800,
+		minHeight: 700,
 	},
 	text: {
 		width: '100%',

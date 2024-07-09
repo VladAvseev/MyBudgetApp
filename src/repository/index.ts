@@ -111,7 +111,9 @@ export const Repository = {
 		const reports = await this.getReports();
 		const updatedReports = reports.map((report) => {
 			if (report.id === data.id) {
-				return { ...report, config: data.config };
+				const dailySpendingLimit = Math.floor((data.config.periodEnd.getTime() - data.config.periodStart.getTime()) / (1000 * 60 * 60 * 24)) + 1
+				console.log(dailySpendingLimit);
+				return { ...report, config: data.config, dailySpending: report.dailySpending.slice(0, dailySpendingLimit) };
 			} else {
 				return report;
 			}

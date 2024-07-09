@@ -1,21 +1,15 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { observer } from 'mobx-react-lite';
 
-type props = {
-	onPress: () => void;
-	color?: string;
-	disabled?: boolean;
-}
-
-export const DownloadButton: React.FC<props> = observer(({ onPress, disabled })  => {
+export const UploadIcon: React.FC = observer(()  => {
   return (
-		<Pressable style={styles.icon} onPress={onPress} disabled={disabled}>
+		<View style={styles.icon}>
 			<View style={styles.line1} />
 			<View style={styles.line2} />
 			<View style={styles.line3} />
 			<View style={styles.line4} />
 			<View style={styles.line5} />
-		</Pressable>
+		</View>
 	)
 })
 
@@ -43,31 +37,31 @@ const styles = StyleSheet.create({
 	},
 	line3: {
 		position: 'absolute',
-		top: 16,
+		top: 18,
 		left: 14,
 		width: 2,
-		height: 12,
+		height: 10,
 		borderRadius: 5,
 		backgroundColor: '#000',
 	},
 	line4: {
 		position: 'absolute',
-		top: 24,
+		top: 18,
 		left: 9,
 		width: 8,
 		height: 2,
 		borderRadius: 5,
 		backgroundColor: '#000',
-		transform: 'rotate(45deg)',
+		transform: 'rotate(-45deg)',
 	},
 	line5: {
 		position: 'absolute',
-		top: 24,
+		top: 18,
 		right: 9,
 		width: 8,
 		height: 2,
 		borderRadius: 5,
 		backgroundColor: '#000',
-		transform: 'rotate(-45deg)',
+		transform: 'rotate(45deg)',
 	},
 });

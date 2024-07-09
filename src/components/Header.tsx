@@ -18,11 +18,16 @@ export const Header: React.FC<props> = observer(({ children })  => {
 
 const styles = StyleSheet.create({
 	container: {
+		position: 'absolute',
+		zIndex: 1000,
+		left: 0,
+		bottom: 0,
 		width: '100%',
 		height: 70,
 		padding: 10,
 		paddingHorizontal: 20,
-		backgroundColor: 'rgb(223, 223, 223)',
+		backgroundColor: 'rgb(230, 230, 230)',
+		borderTopWidth: 1,
 	},
 	header: {
 		width: '100%',

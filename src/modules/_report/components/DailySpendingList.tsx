@@ -1,17 +1,19 @@
-import { StyleSheet, Text } from 'react-native';
 import { observer } from 'mobx-react-lite';
 import { report } from '../models';
 import { DailySpendingItem } from './DailySpendingItem';
-import { Label } from '../../../components/Label';
+import { Text } from 'react-native';
 
 export const DailySpendingList: React.FC = observer(() => {
 	const { 
 		periodStart, 
-		dailyBudget,
 		dailySpending, 
 	} = report;
-
+	
 	let sum = 0;
+
+	if (!dailySpending.length) {
+		return <Text>Список пуст</Text>
+	}
 
   return (
     <>
@@ -23,7 +25,6 @@ export const DailySpendingList: React.FC = observer(() => {
 				
 				return <DailySpendingItem index={index} item={item} sum={currentSumm} date={date} />;
 			})}
-			<Label>{`Итого: ${sum} | ${(dailyBudget * dailySpending.length - sum).toFixed(2)}`}</Label>
 		</>
   );
 });

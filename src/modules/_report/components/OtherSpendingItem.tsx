@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { observer } from 'mobx-react-lite';
 import { TOtherSpending } from '../../../repository';
 import { report } from '../models';
@@ -7,8 +7,11 @@ import { OtherSpendingEditForm } from '../models/OtherSpendingEditForm';
 import { useEffect } from 'react';
 import { VTextField } from '../../../mvvm/TextField/VTextField';
 import { VNumberField } from '../../../mvvm/NumberField/VNumberField';
-import { CrossButton } from '../../../components/CrossButton';
-import { EditButton } from '../../../components/EditButton';
+import { CrossIcon } from '../../../components/Icons/CrossIcon';
+import { EditIcon } from '../../../components/Icons/EditIcon';
+import { IconButton } from '../../../components/IconButton';
+import { TextButton } from '../../../components/TextButton';
+import { Label } from '../../../components/Label';
 
 type props = {
 	item: TOtherSpending & { isEdit: boolean };
@@ -51,9 +54,9 @@ export const OtherSpendingItem: React.FC<props> = observer(({ item }) => {
 					{
 						item.value.toString() !== form.field.value 
 						?
-						<Button title='Сохранить' onPress={saveHandler} />
+						<TextButton title='Сохранить' onPress={saveHandler} />
 						:
-						<Button title='Отменить' onPress={() => setEditOtherSpending(item.id, false)} />
+						<TextButton title='Отменить' onPress={() => setEditOtherSpending(item.id, false)} />
 						
 					}
 			</View>
@@ -62,14 +65,17 @@ export const OtherSpendingItem: React.FC<props> = observer(({ item }) => {
 
   return (
 		<View key={item.id} style={styles.container}>
-			<View style={styles.row}>
-				<Text>{item.value}</Text>
-				<Text>{` - `}</Text>
+			<View >
+				<Label>{item.value}</Label>
 				<Text>{item.title}</Text>
 			</View>
 			<View style={styles.actions}>
-				<EditButton onPress={() => setEditOtherSpending(item.id, true)} />
-				<CrossButton onPress={deleteHandler}/>
+				<IconButton onPress={() => setEditOtherSpending(item.id, true)} width={30} height={30}>
+					<EditIcon />
+				</IconButton>
+				<IconButton onPress={deleteHandler} width={30} height={30}>
+					<CrossIcon />
+				</IconButton>
 			</View>
 		</View>
 	)
@@ -77,9 +83,13 @@ export const OtherSpendingItem: React.FC<props> = observer(({ item }) => {
 
 const styles = StyleSheet.create({
 	container: {
+		width: '100%',
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-between',
+		padding: 5,
+		borderRadius: 10,
+		backgroundColor: 'rgba(255, 255, 255, 1)',
 	},
 	row: {
 		flexDirection: 'row',

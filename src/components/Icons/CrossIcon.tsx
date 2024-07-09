@@ -1,18 +1,12 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { observer } from 'mobx-react-lite';
 
-type props = {
-	onPress: () => void;
-	color?: string;
-	disabled?: boolean;
-}
-
-export const CrossButton: React.FC<props> = observer(({ onPress, color, disabled })  => {
+export const CrossIcon: React.FC = observer(()  => {
   return (
-		<Pressable style={styles.container} onPress={onPress} disabled={disabled}>
+		<View style={styles.container}>
 			<View style={styles.line1} />
 			<View style={styles.line2} />
-		</Pressable>
+		</View>
 	)
 })
 

@@ -10,8 +10,9 @@ import { Actions } from './components/Actions';
 import { Header } from '../../components/Header';
 import { PageContainer } from '../../components/PageContainer';
 import { Container } from '../../components/Container';
-import { ArrowLeftButton } from '../../components/ArrowLeftButton';
-import { UpdatedButton } from '../../components/UpdateButton';
+import { ArrowLeftIcon } from '../../components/Icons/ArrowLeftIcon';
+import { UpdatedIcon } from '../../components/Icons/UpdateIcon';
+import { IconButton } from '../../components/IconButton';
 
 type props = {
 	route: RouteProp<{}>;
@@ -38,13 +39,17 @@ export const ReportConfig: React.FC<props> = observer(({ route, navigation }) =>
 		<>
 			<Header>
 				<View style={styles.header}>
-						<ArrowLeftButton onPress={() => navigation?.navigate('Report', { id: id })} />
-						<UpdatedButton onPress={() => start(id, navigation)} />
+					<IconButton onPress={() => navigation?.navigate('Report', { id: id })}>
+						<ArrowLeftIcon />
+					</IconButton>
+					<IconButton onPress={() => start(id, navigation)}>
+						<UpdatedIcon />
+					</IconButton>
 						<View style={styles.empty} />
 					</View>
 			</Header>
 			<ScrollView>
-				<PageContainer>
+				<PageContainer style={styles.pageCotainer}>
 					<View style={styles.main}>
 						<View>
 							<Container>
@@ -70,8 +75,11 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'space-between',
 	},
+	pageCotainer: {
+		paddingBottom: 0,
+	},
 	empty: {
-		width: 30,
+		width: 50,
 	},
 	main: {
 		paddingBottom: 80,
@@ -82,6 +90,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
 		gap: 10,
-    backgroundColor: '#fff',
+    backgroundColor: 'transparent',
   },
 });

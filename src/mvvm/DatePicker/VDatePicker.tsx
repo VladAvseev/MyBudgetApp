@@ -1,7 +1,8 @@
-import { Button, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { observer } from 'mobx-react-lite';
 import { VMDatePickerInstance } from './VMDatePicker';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { TextButton } from '../../components/TextButton';
 
 type props = {
 	model: VMDatePickerInstance;
@@ -17,7 +18,7 @@ export const VDatePicker: React.FC<props> = observer(({ model }) => {
 
   return (
 		<View>
-			<Button 
+			<TextButton 
 				title={label}
 				onPress={() => setIsOpen(true)}
 			/>	

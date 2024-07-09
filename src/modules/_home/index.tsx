@@ -7,9 +7,10 @@ import { home } from "./models";
 import { Header } from "../../components/Header";
 import { PageContainer } from "../../components/PageContainer";
 import { PendingPage } from "../../components/PendingPage";
-import { DownloadButton } from "../../components/DownloadButton";
-import { UploadButton } from "../../components/UploadButton";
-import { UpdatedButton } from "../../components/UpdateButton";
+import { DownloadIcon } from "../../components/Icons/DownloadIcon";
+import { UploadIcon } from "../../components/Icons/UploadIcon";
+import { UpdatedIcon } from "../../components/Icons/UpdateIcon";
+import { IconButton } from "../../components/IconButton";
 
 type props = {
 	navigation: NavigationProp<{}>;
@@ -30,9 +31,15 @@ export const Home: React.FC<props> = observer(({ navigation }) => {
 		<>
 			<Header>
 					<View style={styles.header}>
-						<DownloadButton onPress={() => navigation?.navigate('Download')} />
-						<UpdatedButton onPress={() => start(navigation)} />
-						<UploadButton onPress={() => navigation?.navigate('Upload')} />
+						<IconButton onPress={() => navigation?.navigate('Download')}>
+							<DownloadIcon />
+						</IconButton>
+						<IconButton onPress={() => start(navigation)}>
+							<UpdatedIcon />
+						</IconButton>
+						<IconButton onPress={() => navigation?.navigate('Upload')}>
+							<UploadIcon />
+						</IconButton>
 					</View>
 				</Header>
 			<ScrollView>
@@ -60,6 +67,6 @@ const styles = StyleSheet.create({
 	},
 	main: {
 		width: '100%',
-		minHeight: 800,
+		minHeight: 700,
 	},
 });

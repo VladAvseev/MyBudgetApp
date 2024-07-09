@@ -1,7 +1,8 @@
-import { Button, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { observer } from 'mobx-react-lite';
 import { reportConfig } from '../models';
 import { VTextField } from '../../../mvvm/TextField/VTextField';
+import { TextButton } from '../../../components/TextButton';
 
 export const Actions: React.FC = observer(() => {
 	const { isEdit, onSave, onCancel, onDelete, deleteField, isDeleteButtonDisabled } = reportConfig;
@@ -12,13 +13,13 @@ export const Actions: React.FC = observer(() => {
 				isEdit 
 					? 
 						<View style={styles.row}>
-							<Button title='Сохранить' onPress={onSave} />
-							<Button title='Отменить' onPress={onCancel} />
+							<TextButton title='Сохранить' onPress={onSave} />
+							<TextButton title='Отменить' onPress={onCancel} />
 						</View>
 					: <View style={styles.column}>
 							<VTextField style={styles.delete} model={deleteField}/>
 							<View style={styles.delete}>
-								<Button 
+								<TextButton 
 									title='Удалить отчёт' 
 									onPress={onDelete} color={'red'} 
 									disabled={isDeleteButtonDisabled} 
@@ -36,14 +37,14 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		gap: 10,
-		backgroundColor: '#fff',
+		backgroundColor: 'transparent',
   },
   column: {
 		width: '100%',
 		flexDirection: 'column',
 		alignItems: 'center',
 		gap: 10,
-		backgroundColor: '#fff',
+		backgroundColor: 'transparent',
   },
 	delete: {
 		width: '100%',

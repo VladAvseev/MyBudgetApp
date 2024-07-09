@@ -21,6 +21,6 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		rowGap: 10,
-		backgroundColor: '#fff',
+		backgroundColor: 'transparent',
 	},
 });

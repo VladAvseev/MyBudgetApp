@@ -1,20 +1,14 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { observer } from 'mobx-react-lite';
 
-type props = {
-	onPress: () => void;
-	color?: string;
-	disabled?: boolean;
-}
-
-export const UpdatedButton: React.FC<props> = observer(({ onPress, disabled })  => {
+export const UpdatedIcon: React.FC = observer(()  => {
   return (
-		<Pressable style={styles.icon} onPress={onPress} disabled={disabled}>
+		<View style={styles.icon}>
 			<View style={styles.circle} />
 			<View style={styles.line1} />
 			<View style={styles.line2} />
 			<View style={styles.line3} />
-		</Pressable>
+		</View>
 	)
 })
 
@@ -30,7 +24,7 @@ const styles = StyleSheet.create({
 		borderRadius: 15,
 		borderWidth: 3,
 		borderColor: '#000',
-		backgroundColor: 'rgb(223, 223, 223)',
+		backgroundColor: 'rgb(230, 230, 230)',
 	},
 	line1: {
 		position: 'absolute',
@@ -58,7 +52,7 @@ const styles = StyleSheet.create({
 		right: -1,
 		width: 6,
 		height: 4,
-		backgroundColor: 'rgb(223, 223, 223)',
+		backgroundColor: 'rgb(230, 230, 230)',
 		// transform: 'rotate(-45deg)',
 	},
 });

@@ -1,7 +1,8 @@
-import { ActivityIndicator, Button, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { observer } from 'mobx-react-lite';
 import { report } from '../models';
 import { VNumberField } from '../../../mvvm/NumberField/VNumberField';
+import { TextButton } from '../../../components/TextButton';
 
 export const DailySpendingForm: React.FC = observer(() => {
 	const { 
@@ -30,7 +31,7 @@ export const DailySpendingForm: React.FC = observer(() => {
 			return (
 				<View style={styles.form}>
 					<VNumberField model={field}/>
-					<Button title='Добавить' onPress={addDailySpending} disabled={!isValid} />
+					<TextButton title='Добавить' onPress={addDailySpending} disabled={!isValid} />
 				</View>
 			)
 		}

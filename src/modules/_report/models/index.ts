@@ -38,7 +38,16 @@ export const report = types.model('report')
   		0,
 		);
 		return (incomeSum - dailySpendingSum - otherSpendingSum).toFixed(2);
-	}
+	},
+	get dailySpendingSum(): number {
+		return self.dailySpending.reduce((currentSum, item) => currentSum + item.value, 0);
+	},
+	get otherSpendingSum(): number {
+		return self.otherSpending.reduce((currentSum, item) => currentSum + item.value, 0);
+	},
+	get incomeSum(): number {
+		return self.income.reduce((currentSum, item) => currentSum + item.value, 0);
+	},
 }))
 .actions((self) => ({
 	setNavigation(value: INavigation) {
