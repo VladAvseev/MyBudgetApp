@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 		width: 30,
 		height: 4,
 		borderRadius: 5,
-		backgroundColor: '#000',
+		backgroundColor: '#FFF',
 	},
 	line2: {
 		position: 'absolute',
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 		width: 30,
 		height: 4,
 		borderRadius: 5,
-		backgroundColor: '#000',
+		backgroundColor: '#FFF',
 	},
 	line3: {
 		position: 'absolute',
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
 		width: 2,
 		height: 10,
 		borderRadius: 5,
-		backgroundColor: '#000',
+		backgroundColor: '#FFF',
 	},
 	line4: {
 		position: 'absolute',
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 		width: 8,
 		height: 2,
 		borderRadius: 5,
-		backgroundColor: '#000',
+		backgroundColor: '#FFF',
 		transform: 'rotate(-45deg)',
 	},
 	line5: {
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
 		width: 8,
 		height: 2,
 		borderRadius: 5,
-		backgroundColor: '#000',
+		backgroundColor: '#FFF',
 		transform: 'rotate(45deg)',
 	},
 });

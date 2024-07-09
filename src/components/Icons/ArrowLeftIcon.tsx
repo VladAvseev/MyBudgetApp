@@ -23,14 +23,14 @@ const styles = StyleSheet.create({
 		width: 20,
 		height: 4,
 		borderRadius: 5,
-		backgroundColor: '#000',
+		backgroundColor: '#FFF',
 		transform: 'rotate(-30deg)',
 	},
 	line2: {
 		width: 20,
 		height: 4,
 		borderRadius: 5,
-		backgroundColor: '#000',
+		backgroundColor: '#FFF',
 		transform: 'rotate(30deg)',
 	},
 });

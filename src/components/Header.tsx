@@ -26,8 +26,7 @@ const styles = StyleSheet.create({
 		height: 70,
 		padding: 10,
 		paddingHorizontal: 20,
-		borderTopWidth: 1,
-		backgroundColor: 'rgb(245, 245, 245)',
+		backgroundColor: 'rgb(33, 150, 243)'
 	},
 	header: {
 		width: '100%',

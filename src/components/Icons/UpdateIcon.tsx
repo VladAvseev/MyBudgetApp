@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 		height: 30,
 		borderRadius: 15,
 		borderWidth: 3,
-		borderColor: '#000',
+		borderColor: '#FFF',
 		backgroundColor: 'transparent',
 	},
 	line1: {
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
 		width: 12,
 		height: 4,
 		borderRadius: 5,
-		backgroundColor: '#000',
+		backgroundColor: '#FFF',
 		transform: 'rotate(55deg)',
 	},
 	line2: {
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
 		width: 12,
 		height: 4,
 		borderRadius: 5,
-		backgroundColor: '#000',
+		backgroundColor: '#FFF',
 		transform: 'rotate(-55deg)',
 	},
 });
