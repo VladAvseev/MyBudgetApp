@@ -11,6 +11,7 @@ import { IconButton } from '../../../components/IconButton';
 import { Label } from '../../../components/Label';
 import { TextButton } from '../../../components/TextButton';
 import { VNumberField } from '../../../mvvm/NumberField/VNumberField';
+import { CrossIcon } from '../../../components/Icons/CrossIcon';
 
 type props = {
 	index: number;
