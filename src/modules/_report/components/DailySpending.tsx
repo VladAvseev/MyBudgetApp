@@ -4,6 +4,7 @@ import { DailySpendingForm } from './DailySpendingForm';
 import { DailySpendingList } from './DailySpendingList';
 import { Label } from '../../../components/Label';
 import { ScrollView, StyleSheet, View } from 'react-native';
+import { Title } from '../../../components/Title';
 
 export const DailySpending: React.FC = observer(() => {
 	const {  
@@ -13,7 +14,7 @@ export const DailySpending: React.FC = observer(() => {
 	} = report;
 
   return (
-		<View style={styles.container}>	
+		<View style={styles.container}>
 			<Label>{`Всего: ${dailySpendingSum.toFixed(2)} | ${(dailyBudget * dailySpending.length - dailySpendingSum).toFixed(2)}`}</Label>
 			<DailySpendingForm />
 			<ScrollView>
@@ -30,4 +31,15 @@ const styles = StyleSheet.create({
 		gap: 10,
 		padding: 10,
 	},
+	tab: {
+		width: '100%',
+		backgroundColor: 'rgb(33, 150, 243)',
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
+		padding: 10,
+	},
+	tabTitle: {
+		color: '#FFF',
+	}
 });

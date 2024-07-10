@@ -1,6 +1,6 @@
 import { NavigationProp, RouteProp } from '@react-navigation/native';
-import { useEffect, useState } from 'react';
-import { StyleSheet, useWindowDimensions, View } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { report } from './models';
 import { observer } from 'mobx-react-lite';
 import { SavedForPeriod } from './components/SavedForPeriod';
@@ -12,16 +12,11 @@ import { ArrowLeftIcon } from '../../components/Icons/ArrowLeftIcon';
 import { BurgerIcon } from '../../components/Icons/BurgerIcon';
 import { UpdatedIcon } from '../../components/Icons/UpdateIcon';
 import { IconButton } from '../../components/IconButton';
-import { SceneMap, TabView } from 'react-native-tab-view';
 import { DailySpending } from './components/DailySpending';
 import { OtherSpending } from './components/OtherSpending';
 import { Income } from './components/Income';
-
-const renderScene = SceneMap({
-  first: DailySpending,
-  second: OtherSpending,
-  third: Income,
-});
+import PagerView, { PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
+import { Label } from '../../components/Label';
 
 type props = {
 	route: RouteProp<{}>;
@@ -31,19 +26,17 @@ type props = {
 export const Report: React.FC<props> = observer(({ route, navigation }) => {
 	const { id }= route.params;
 	const {isPending, start, updatePage, title} = report;
+	const [tabIndex, setTabIndex] = useState(0);
+	const pagerRef = useRef(null);
 
 	useEffect(() => {
 		start(id, navigation);
 	}, [])
 
-	const layout = useWindowDimensions();
-
-  const [index, setIndex] = useState(0);
-  const [routes] = useState([
-    { key: 'first', title: 'Ежедневные расходы' },
-    { key: 'second', title: 'Остальные расходы' },
-    { key: 'third', title: 'Доходы' },
-  ]);
+	const changePage = (index: number) => {
+		pagerRef?.current.setPage(index);
+		setTabIndex(index)
+	}
 
 	if (isPending) {
 		return <PendingPage />
@@ -68,12 +61,23 @@ export const Report: React.FC<props> = observer(({ route, navigation }) => {
 				<Title style={{ color: '#FFF' }}>{title}</Title>
 				<SavedForPeriod />
 			</PageContainer>
-			{/* <TabView
-				navigationState={{ index, routes }}
-				renderScene={renderScene}
-				onIndexChange={setIndex}
-				initialLayout={{ width: layout.width }}
-			/> */}
+			<View style={styles.tabBar}>
+				<Pressable style={styles.tabItem} onPress={() => changePage(0)}>
+					<Label style={styles.tabTitle}>Ежедневные расходы</Label>
+				</Pressable>
+				<Pressable style={styles.tabItem} onPress={() => changePage(1)}>
+					<Label style={styles.tabTitle}>Остальные расходы</Label>
+				</Pressable>
+				<Pressable style={styles.tabItem} onPress={() => changePage(2)}>
+					<Label style={styles.tabTitle}>Доходы</Label>
+				</Pressable>
+			</View>
+			<View style={{ ...styles.tabSelectedIndicator, left: `${tabIndex * 33.33}%` }} />
+			<PagerView ref={pagerRef} onPageSelected={(e: PagerViewOnPageSelectedEvent) =>  setTabIndex(e.nativeEvent.position)} style={{ flex: 1 }} initialPage={0} useNext={false}>
+				<DailySpending key={0} />
+				<OtherSpending key={1} />
+				<Income key={2} />
+			</PagerView>
 		</>
   );
 })
@@ -91,4 +95,27 @@ const styles = StyleSheet.create({
 		alignItems: 'flex-start',
 		gap: 10
   },
+	tabBar: {
+		width: '100%',
+		backgroundColor: 'rgb(33, 150, 243)',
+		flexDirection: 'row',
+		alignItems: 'center',
+	},
+	tabItem: {
+		width: '33.33%',
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
+		paddingVertical: 10,
+	},
+	tabTitle: {
+		color: '#FFF',
+	},
+	tabSelectedIndicator: {
+		width: '33.33%',
+		height: 3,
+		borderBottomLeftRadius: 3,
+		borderBottomRightRadius: 3,
+		backgroundColor: '#000',
+	}
 });
