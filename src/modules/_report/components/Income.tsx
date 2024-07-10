@@ -2,8 +2,6 @@ import { observer } from 'mobx-react-lite';
 import { report } from '../models';
 import { Label } from '../../../components/Label';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { OtherSpendingForm } from './OtherSpendingForm';
-import { OtherSpendingList } from './OtherSpendingList';
 import { IncomeForm } from './IncomeForm';
 import { IncomeList } from './IncomeList';
 

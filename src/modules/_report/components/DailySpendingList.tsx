@@ -23,7 +23,7 @@ export const DailySpendingList: React.FC = observer(() => {
 				const currentSumm = Number((sum + item.value).toFixed(2));
 				sum = currentSumm;
 				
-				return <DailySpendingItem index={index} item={item} sum={currentSumm} date={date} />;
+				return <DailySpendingItem key={item.id} index={index} item={item} sum={currentSumm} date={date} />;
 			})}
 		</View>
   );

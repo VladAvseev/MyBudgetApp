@@ -18,7 +18,7 @@ export const OtherSpendingList: React.FC = observer(() => {
 		<View style={styles.container}>
 			{otherSpending.map((item) => {
 				sum = Number((sum + item.value).toFixed(2))
-				return <OtherSpendingItem item={item} />
+				return <OtherSpendingItem key={item.id} item={item} />
 			})}
     </View>
   );

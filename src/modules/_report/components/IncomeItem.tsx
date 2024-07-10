@@ -48,7 +48,7 @@ export const IncomeItem: React.FC<props> = observer(({ item }) => {
 	
 	if (item.isEdit) {
 		return (
-			<View key={item.id} style={styles.container}>
+			<View style={styles.container}>
 					<VNumberField model={form.field}/>
 					<VTextField model={form.title}/>
 					{

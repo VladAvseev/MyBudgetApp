@@ -18,7 +18,7 @@ export const IncomeList: React.FC = observer(() => {
     <View style={styles.container}>
 			{income.map((item) => {
 				sum = Number((sum + item.value).toFixed(2))
-				return <IncomeItem item={item} />
+				return <IncomeItem key={item.id} item={item} />
 			})}
     </View>
   );
