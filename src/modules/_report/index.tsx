@@ -57,7 +57,7 @@ export const Report: React.FC<props> = observer(({ route, navigation }) => {
 					</IconButton>
 				</View>
 			</Header>
-			<PageContainer style={{ paddingBottom: 20, backgroundColor: 'rgb(33, 150, 243)'}}>
+			<PageContainer style={{ paddingBottom: 0, backgroundColor: 'rgb(33, 150, 243)'}}>
 				<Title style={{ color: '#FFF' }}>{title}</Title>
 				<SavedForPeriod />
 			</PageContainer>
