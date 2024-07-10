@@ -37,7 +37,35 @@ export type TIncome = {
 	value: number,
 }
 
+export type TAnalytics = {
+	savedSum: number;
+	dailySpending: {
+		sum: number;
+		avarage: number;
+		last: number;
+	},
+	otherSpending: {
+		sum: number;
+		avarage: number;
+		last: number;
+	},
+	income: {
+		sum: number;
+		avarage: number;
+		last: number;
+	},
+}
+
 export const Repository = {
+	async getStartSum(): Promise<number> {
+		const res = await AsyncStorage.getItem('startSum');
+		return res ? JSON.parse(res) as number : 0;
+	},
+
+	async setStartSum(sum: number): Promise<void> {
+		AsyncStorage.setItem('startSum', JSON.stringify(sum));
+	},
+
 	async getReports(): Promise<TReport[]> {
 		const res = await AsyncStorage.getItem('reports');
 		return res ? JSON.parse(res) as TReport[] : [];
@@ -288,6 +316,63 @@ export const Repository = {
 
 		await this.setReports(updatedReports);	
 	},
+
+	async getAnalytics(): Promise<TAnalytics> {
+		const reports = await this.getReports();
+		const startSum = await this.getStartSum();
+		let analytics = {
+			savedSum: 0,
+			dailySpending: {
+				sum: 0,
+				avarage: 0,
+				last: 0,
+			},
+			otherSpending: {
+				sum: 0,
+				avarage: 0,
+				last: 0,
+			},
+			income: {
+				sum: 0,
+				avarage: 0,
+				last: 0,
+			},
+		} as TAnalytics;
+		let dailySumWithoutLastReport = 0;
+		let otherSumWithoutLastReport = 0;
+		let incomeSumWithoutLastReport = 0;
+		reports.forEach((report, reportIndex) => {
+			report.dailySpending.map((dailySpending) => {
+				analytics.dailySpending.sum += dailySpending.value;
+				if (reportIndex + 1 === reports.length) {
+					analytics.dailySpending.last += dailySpending.value;
+				} else {
+					dailySumWithoutLastReport += dailySpending.value;
+					analytics.dailySpending.avarage = dailySumWithoutLastReport / (reports.length - 1);
+				}
+			});
+			report.otherSpending.forEach((otherSpending) => {
+				analytics.otherSpending.sum += otherSpending.value;
+				if (reportIndex + 1 === reports.length) {
+					analytics.otherSpending.last += otherSpending.value;
+				} else {
+					otherSumWithoutLastReport += otherSpending.value;
+					analytics.otherSpending.avarage = otherSumWithoutLastReport / (reports.length - 1);
+				}
+			});
+			report.income.forEach((income) => {
+				analytics.income.sum += income.value;
+				if (reportIndex + 1 === reports.length) {
+					analytics.income.last += income.value;
+				} else {
+					incomeSumWithoutLastReport += income.value;
+					analytics.income.avarage = incomeSumWithoutLastReport / (reports.length - 1);
+				}
+			});
+		})
+		analytics.savedSum = startSum + analytics.income.sum - analytics.dailySpending.sum - analytics.otherSpending.sum;
+		return analytics;
+	}
 };
 
 function findReport(reports: TReport[], id: number): TReport {
@@ -306,6 +391,7 @@ function findReport(reports: TReport[], id: number): TReport {
 			dailyBudget: Number(report.config.dailyBudget),
 		}
 	};
+
 }
 
 function generateId(): number {

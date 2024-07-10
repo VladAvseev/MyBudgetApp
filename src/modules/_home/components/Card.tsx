@@ -10,7 +10,7 @@ type props = {
 export const Card: React.FC<props> = observer(({ card }) => {
 	const { navigation } = home;
   return (
-		<Pressable onPress={() => navigation?.navigate('Report', { id: card.id })}>
+		<Pressable accessibilityHint="Navigates to the previous screen" onPress={() => navigation?.navigate('Report', { id: card.id })}>
 			<View style={styles.card}>
 				<Text>{card.title}</Text>
 			</View>

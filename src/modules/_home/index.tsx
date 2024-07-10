@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import { CardList } from "./components/CardList"; 
-import { Button, ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { useEffect } from "react";
 import { home } from "./models";
@@ -11,6 +11,7 @@ import { DownloadIcon } from "../../components/Icons/DownloadIcon";
 import { UploadIcon } from "../../components/Icons/UploadIcon";
 import { UpdatedIcon } from "../../components/Icons/UpdateIcon";
 import { IconButton } from "../../components/IconButton";
+import { Analytics } from "./components/Analytics";
 
 type props = {
 	navigation: NavigationProp<{}>;
@@ -42,6 +43,7 @@ export const Home: React.FC<props> = observer(({ navigation }) => {
 					</IconButton>
 				</View>
 			</Header>
+			<Analytics />
 			<ScrollView>
 				<PageContainer>
 					<CardList />

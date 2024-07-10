@@ -1,6 +1,6 @@
 import { NavigationProp } from "@react-navigation/native";
 import { types } from "mobx-state-tree";
-import { Repository } from "../../../repository";
+import { Repository, TAnalytics } from "../../../repository";
 
 export type ICard = {
 	id: number;
@@ -14,6 +14,7 @@ export const home = types.model('home')
 	navigation: null as INavigation | null,
 	isPending: true,
 	cards: [] as ICard[],
+	analytics: {} as TAnalytics
 }))
 .actions((self) => ({
 	setNavigation(value: INavigation) {
@@ -22,17 +23,23 @@ export const home = types.model('home')
 	setIsPending(value: boolean) {
 		self.isPending = value;
 	},
-	setCards(cards: ICard[]) {
-		self.cards = cards;
-	}
+	setCards(value: ICard[]) {
+		self.cards = value;
+	},
+	setAnalytics(value: TAnalytics) {
+		self.analytics = value;
+	},
 }))
 .actions((self) => ({
 	async fetch() {
 		const reportCards = await Repository.getReportCards();
 		self.setCards(reportCards);
+		const analytics = await Repository.getAnalytics();
+		self.setAnalytics(analytics);
 	},
 	cleadData() {
 		self.setCards([]);
+		self.setAnalytics({} as TAnalytics);
 	},
 }))
 .actions((self) => ({
