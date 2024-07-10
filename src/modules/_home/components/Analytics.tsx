@@ -13,7 +13,7 @@ export const Analytics = () => {
 		return (
 			<Pressable style={styles.modalBack} onPress={() => setOpen(false)}>
 				<View style={styles.modal}>
-					<Text>Средние значени расчитываются без учёта последнего отчёта.</Text>
+					<Text>Средние значения рассчитываются без учёта последнего отчёта.</Text>
 				</View>
 			</Pressable>
 		)
