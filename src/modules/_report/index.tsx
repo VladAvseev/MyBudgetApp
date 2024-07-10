@@ -68,12 +68,12 @@ export const Report: React.FC<props> = observer(({ route, navigation }) => {
 				<Title style={{ color: '#FFF' }}>{title}</Title>
 				<SavedForPeriod />
 			</PageContainer>
-			<TabView
+			{/* <TabView
 				navigationState={{ index, routes }}
 				renderScene={renderScene}
 				onIndexChange={setIndex}
 				initialLayout={{ width: layout.width }}
-			/>
+			/> */}
 		</>
   );
 })
