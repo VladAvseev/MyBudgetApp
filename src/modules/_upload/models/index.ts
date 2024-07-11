@@ -17,6 +17,7 @@ export const upload = types.model('upload')
 	isPending: false,
 	dataField: VMTextField.create({ placeholder: 'Введите данные в JSON формате' }),
 	sumField: VMNumberField.create({ placeholder: 'Введите начальный баланс' }),
+	startSum: 0,
 }))
 .views((self) => ({
 	get reports(): TReport[] {
@@ -26,7 +27,7 @@ export const upload = types.model('upload')
 		return !!self.dataField.value.length;
 	},
 	get sumFormIsValid(): boolean {
-		return !!self.sumField.value.length;
+		return !!self.sumField.value.length && Number(self.sumField.value) !== self.startSum;
 	},
 }))
 .actions((self) => ({
@@ -36,12 +37,16 @@ export const upload = types.model('upload')
 	setIsPending(value: boolean) {
 		self.isPending = value;
 	},
+	setStartSum(value: number) {
+		self.startSum = value;
+	},
 }))
 .actions((self) => ({
 	async fetch() {
 		self.setIsPending(true);
 		const sum = await Repository.getStartSum();
 		self.sumField.setValue(sum.toString());
+		self.setStartSum(sum);
 		self.setIsPending(false);
 	},
 }))
@@ -66,7 +71,7 @@ export const upload = types.model('upload')
 		try {
 			self.setIsPending(true);
 			await Repository.setStartSum(Number(self.sumField.value));
-			self.sumField.setValue('');
+			await self.fetch();
 		} catch {}
 		self.setIsPending(false);
 	},

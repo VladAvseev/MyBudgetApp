@@ -14,7 +14,8 @@ export const home = types.model('home')
 	navigation: null as INavigation | null,
 	isPending: true,
 	cards: [] as ICard[],
-	analytics: {} as TAnalytics
+	analytics: {} as TAnalytics,
+	analyticsIsOpen: false,
 }))
 .actions((self) => ({
 	setNavigation(value: INavigation) {
@@ -29,6 +30,9 @@ export const home = types.model('home')
 	setAnalytics(value: TAnalytics) {
 		self.analytics = value;
 	},
+	setAnalyticsIsOpen(value: boolean) {
+		self.analyticsIsOpen = value;
+	},
 }))
 .actions((self) => ({
 	async fetch() {
@@ -41,6 +45,9 @@ export const home = types.model('home')
 		self.setCards([]);
 		self.setAnalytics({} as TAnalytics);
 	},
+	toggleAnalyticsIsOpen() {
+		self.setAnalyticsIsOpen(!self.analyticsIsOpen);
+	}
 }))
 .actions((self) => ({
 	async addCard() {

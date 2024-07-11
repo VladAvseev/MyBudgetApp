@@ -38,6 +38,7 @@ export type TIncome = {
 }
 
 export type TAnalytics = {
+	startSum: number;
 	savedSum: number;
 	dailySpending: {
 		sum: number;
@@ -321,6 +322,7 @@ export const Repository = {
 		const reports = await this.getReports();
 		const startSum = await this.getStartSum();
 		let analytics = {
+			startSum: 0,
 			savedSum: 0,
 			dailySpending: {
 				sum: 0,
@@ -370,6 +372,7 @@ export const Repository = {
 				}
 			});
 		})
+		analytics.startSum = startSum;
 		analytics.savedSum = startSum + analytics.income.sum - analytics.dailySpending.sum - analytics.otherSpending.sum;
 		return analytics;
 	}
