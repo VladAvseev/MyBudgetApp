@@ -20,7 +20,6 @@ type props = {
 export const OtherSpendingItem: React.FC<props> = observer(({ item }) => {
 	const { 
 		id,
-		setIsPending, 
 		setEditOtherSpending,
 		updatePage,
 	} = report;
@@ -33,14 +32,12 @@ export const OtherSpendingItem: React.FC<props> = observer(({ item }) => {
 	}, []);
 
 	const saveHandler = async () => {
-		setIsPending(true);
 		await form.save();
 		setEditOtherSpending(item.id, false);
 		updatePage();	
 	}
 
 	const deleteHandler = async () => {
-		setIsPending(true);
 		await form.delete();
 		setEditOtherSpending(item.id, false);
 		updatePage();	

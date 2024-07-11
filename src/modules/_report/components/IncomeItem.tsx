@@ -20,7 +20,6 @@ type props = {
 export const IncomeItem: React.FC<props> = observer(({ item }) => {
 	const { 
 		id,
-		setIsPending, 
 		setEditIncome,
 		updatePage,
 	} = report;
@@ -33,14 +32,12 @@ export const IncomeItem: React.FC<props> = observer(({ item }) => {
 	}, []);
 
 	const saveHandler = async () => {
-		setIsPending(true);
 		await form.save();
 		setEditIncome(item.id, false);
 		updatePage();	
 	}
 
 	const deleteHandler = async () => {
-		setIsPending(true);
 		await form.delete();
 		setEditIncome(item.id, false);
 		updatePage();	

@@ -23,9 +23,9 @@ type props = {
 export const DailySpendingItem: React.FC<props> = observer(({ index, item, sum, date }) => {
 	const { 
 		id,
-		setIsPending,
 		dailyBudget, 
 		setEditDailySpending,
+		updatePage,
 	} = report;
 
 	const form = useLocalModel(DailySpendingEditForm, { reportId: id, id: item.id });
@@ -36,10 +36,9 @@ export const DailySpendingItem: React.FC<props> = observer(({ index, item, sum, 
 	}, []);
 
 	const saveHandler = async () => {
-		setIsPending(true);
 		await form.save();
 		setEditDailySpending(item.id, false);
-		setIsPending(true);
+		updatePage();
 	}
 	
 	if (item.isEdit) {

@@ -25,13 +25,19 @@ type props = {
 
 export const Report: React.FC<props> = observer(({ route, navigation }) => {
 	const { id }= route.params;
-	const {isPending, start, updatePage, title} = report;
+	const {setIsPending, isPending, start, updatePage, title} = report;
 	const [tabIndex, setTabIndex] = useState(0);
 	const pagerRef = useRef(null);
 
 	useEffect(() => {
 		start(id, navigation);
 	}, [])
+
+	const updatePageHandler = async () => {
+		setIsPending(true);
+		await updatePage();
+		setIsPending(false);
+	}
 
 	const changePage = (index: number) => {
 		pagerRef?.current.setPage(index);
@@ -49,7 +55,7 @@ export const Report: React.FC<props> = observer(({ route, navigation }) => {
 					<IconButton onPress={() => navigation?.navigate('Home')}>
 						<ArrowLeftIcon />
 					</IconButton>
-					<IconButton onPress={updatePage}>
+					<IconButton onPress={updatePageHandler}>
 						<UpdatedIcon />
 					</IconButton>
 					<IconButton onPress={() => navigation?.navigate('ReportConfig', { id: id })}>

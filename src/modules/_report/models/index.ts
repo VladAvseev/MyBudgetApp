@@ -184,9 +184,7 @@ export const report = types.model('report')
 }))
 .actions((self) => ({
 	async updatePage() {
-		self.setIsPending(true);
 		await self.fetch();
-		self.setIsPending(false);
 	}
 }))
 .create({})

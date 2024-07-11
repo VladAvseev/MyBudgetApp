@@ -72,8 +72,9 @@ export const upload = types.model('upload')
 	},
 }))
 .actions((self) => ({
-	start(navigation: INavigation) {
+	async start(navigation: INavigation) {
 		self.setNavigation(navigation);
+		await self.fetch();
 		self.setIsPending(false);
 	},
 }))
