@@ -12,13 +12,17 @@ export const OtherSpending: React.FC = observer(() => {
 	} = report;
 
   return (
-		<View style={styles.container}>	
-			<Label>{`Всего: ${otherSpendingSum.toFixed(2)}`}</Label>
-			<OtherSpendingForm />
+		<>
+			<View style={styles.container}>	
+				<Label>{`Всего: ${otherSpendingSum.toFixed(2)}`}</Label>
+				<OtherSpendingForm />
+			</View>
 			<ScrollView>
-				<OtherSpendingList />
+				<View style={styles.container}>	
+					<OtherSpendingList />
+				</View>
 			</ScrollView>
-		</View>
+		</>
   );
 });
 

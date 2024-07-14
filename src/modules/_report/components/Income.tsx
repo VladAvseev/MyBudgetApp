@@ -11,13 +11,17 @@ export const Income: React.FC = observer(() => {
 	} = report;
 
   return (
-		<View style={styles.container}>	
-			<Label>{`Всего: ${incomeSum.toFixed(2)}`}</Label>
-			<IncomeForm />
+		<>
+			<View style={styles.container}>	
+				<Label>{`Всего: ${incomeSum.toFixed(2)}`}</Label>
+				<IncomeForm />
+			</View>
 			<ScrollView>
-				<IncomeList />
+				<View style={styles.container}>	
+					<IncomeList />
+				</View>
 			</ScrollView>
-		</View>
+		</>
   );
 });
 

@@ -14,13 +14,17 @@ export const DailySpending: React.FC = observer(() => {
 	} = report;
 
   return (
-		<View style={styles.container}>
-			<Label>{`Всего: ${dailySpendingSum.toFixed(2)} | ${(dailyBudget * dailySpending.length - dailySpendingSum).toFixed(2)}`}</Label>
-			<DailySpendingForm />
+		<>
+			<View style={styles.container}>
+				<Label>{`Всего: ${dailySpendingSum.toFixed(2)} | ${(dailyBudget * dailySpending.length - dailySpendingSum).toFixed(2)}`}</Label>
+				<DailySpendingForm />
+			</View>
 			<ScrollView>
-				<DailySpendingList />
+				<View style={styles.container}>
+					<DailySpendingList />
+				</View>
 			</ScrollView>
-		</View>
+		</>
   );
 });
 

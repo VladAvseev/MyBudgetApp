@@ -62,7 +62,7 @@ export const OtherSpendingItem: React.FC<props> = observer(({ item }) => {
 
   return (
 		<View key={item.id} style={styles.container}>
-			<View >
+			<View style={styles.info}>
 				<Label>{item.value}</Label>
 				<Text>{item.title}</Text>
 			</View>
@@ -96,5 +96,8 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		gap: 10,
+	},
+	info: {
+		width: '80%',
 	}
 });

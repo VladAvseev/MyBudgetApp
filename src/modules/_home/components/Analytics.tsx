@@ -59,57 +59,57 @@ export const Analytics = observer(() => {
 			</View>
 				<Animated.View style={{ height }}>
 					<Animated.View style={{ opacity }}>
-					<View style={styles.rowWrapper}>
-						<Title style={styles.text}>Ежедневные расходы:</Title>
-						<View style={styles.row}>
-							<View>
-								<Label style={styles.text}>Всего:</Label>
-								<Text style={styles.text}>{analytics.dailySpending.sum.toFixed(2)}</Text>
-							</View>
-							<View>
-								<Label style={styles.text}>В среднем:</Label>
-								<Text style={styles.text}>~{analytics.dailySpending.avarage.toFixed(2)}</Text>
-							</View>
-							<View>
-								<Label style={styles.text}>За последний период:</Label>
-								<Text style={styles.text}>{analytics.dailySpending.last.toFixed(2)}</Text>
-							</View>
-						</View>
-					</View>
-					<View style={styles.rowWrapper}>
-						<Title style={styles.text}>Остальные расходы:</Title>
-						<View style={styles.row}>
-							<View>
-								<Label style={styles.text}>Всего:</Label>
-								<Text style={styles.text}>{analytics.otherSpending.sum.toFixed(2)}</Text>
-							</View>
-							<View>
-								<Label style={styles.text}>В среднем:</Label>
-								<Text style={styles.text}>~{analytics.otherSpending.avarage.toFixed(2)}</Text>
-							</View>
-							<View>
-								<Label style={styles.text}>За последний период:</Label>
-								<Text style={styles.text}>{analytics.otherSpending.last.toFixed(2)}</Text>
+						<View style={styles.rowWrapper}>
+							<Title style={styles.text}>Ежедневные расходы:</Title>
+							<View style={styles.row}>
+								<View>
+									<Label style={styles.text}>Всего:</Label>
+									<Text style={styles.text}>{analytics.dailySpending.sum.toFixed(2)}</Text>
+								</View>
+								<View>
+									<Label style={styles.text}>В среднем:</Label>
+									<Text style={styles.text}>~{analytics.dailySpending.avarage.toFixed(2)}</Text>
+								</View>
+								<View>
+									<Label style={styles.text}>За последний период:</Label>
+									<Text style={styles.text}>{analytics.dailySpending.last.toFixed(2)}</Text>
+								</View>
 							</View>
 						</View>
-					</View>
-					<View style={styles.rowWrapper}>
-						<Title style={styles.text}>Доходы:</Title>
-						<View style={styles.row}>
-							<View>
-								<Label style={styles.text}>Всего:</Label>
-								<Text style={styles.text}>{analytics.income.sum.toFixed(2)}</Text>
-							</View>
-							<View>
-								<Label style={styles.text}>В среднем:</Label>
-								<Text style={styles.text}>~{analytics.income.avarage.toFixed(2)}</Text>
-							</View>
-							<View>
-								<Label style={styles.text}>За последний период:</Label>
-								<Text style={styles.text}>{analytics.income.last.toFixed(2)}</Text>
+						<View style={styles.rowWrapper}>
+							<Title style={styles.text}>Остальные расходы:</Title>
+							<View style={styles.row}>
+								<View>
+									<Label style={styles.text}>Всего:</Label>
+									<Text style={styles.text}>{analytics.otherSpending.sum.toFixed(2)}</Text>
+								</View>
+								<View>
+									<Label style={styles.text}>В среднем:</Label>
+									<Text style={styles.text}>~{analytics.otherSpending.avarage.toFixed(2)}</Text>
+								</View>
+								<View>
+									<Label style={styles.text}>За последний период:</Label>
+									<Text style={styles.text}>{analytics.otherSpending.last.toFixed(2)}</Text>
+								</View>
 							</View>
 						</View>
-					</View>
+						<View style={styles.rowWrapper}>
+							<Title style={styles.text}>Доходы:</Title>
+							<View style={styles.row}>
+								<View>
+									<Label style={styles.text}>Всего:</Label>
+									<Text style={styles.text}>{analytics.income.sum.toFixed(2)}</Text>
+								</View>
+								<View>
+									<Label style={styles.text}>В среднем:</Label>
+									<Text style={styles.text}>~{analytics.income.avarage.toFixed(2)}</Text>
+								</View>
+								<View>
+									<Label style={styles.text}>За последний период:</Label>
+									<Text style={styles.text}>{analytics.income.last.toFixed(2)}</Text>
+								</View>
+							</View>
+						</View>
 					</Animated.View>
 				</Animated.View>
 		</PageContainer>
@@ -126,8 +126,9 @@ const styles = StyleSheet.create({
 		backgroundColor: 'rgb(33, 150, 243)',
 		flexDirection: 'column',
 		alignItems: 'center',
-		gap: 10,
+		gap: 5,
 		paddingBottom: 10,
+		paddingTop: 10,
 	},
 	rowWrapper: {
 		width: '100%',
