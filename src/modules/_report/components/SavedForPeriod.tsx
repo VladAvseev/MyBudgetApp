@@ -18,6 +18,5 @@ export const SavedForPeriod: React.FC = observer(() => {
 const styles = StyleSheet.create({
   container: {
 		width: '100%',
-		gap: 10,
   },
 });

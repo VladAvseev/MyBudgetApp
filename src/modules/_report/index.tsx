@@ -63,8 +63,8 @@ export const Report: React.FC<props> = observer(({ route, navigation }) => {
 					</IconButton>
 				</View>
 			</Header>
-			<PageContainer style={{ paddingBottom: 0, backgroundColor: 'rgb(33, 150, 243)'}}>
-				<Title style={{ color: '#FFF' }}>{title}</Title>
+			<PageContainer style={{ paddingBottom: 0, paddingTop: 10, backgroundColor: 'rgb(33, 150, 243)' }}>
+				<Title style={{ color: '#FFF' }}>{title}</Title> 
 				<SavedForPeriod />
 			</PageContainer>
 			<View style={styles.tabBar}>
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'center',
-		paddingVertical: 10,
+		paddingBottom: 5,
 	},
 	tabTitle: {
 		color: '#FFF',
